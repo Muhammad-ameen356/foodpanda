@@ -1,0 +1,12 @@
+.margin-remove{
+    margin-bottom: -20px;
+}
+
+.card{
+    border: none !important;
+    cursor: pointer;
+}
+
+.card-img-top{
+    border-radius: 0px !important;
+}

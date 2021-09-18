@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+body {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.nav {
+  height: 60px;
+  width: 100%;
+  background-color: #ffffff;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.082);
+  z-index: 1;
+}
+
+.nav > .nav-header {
+  display: inline;
+}
+
+.nav > .nav-header > .nav-title {
+  display: inline-block;
+  color: #D70F64;
+  padding: 15px 15px 15px 5px;
+}
+
+.nav > .nav-btn {
+  display: none;
+}
+
+.nav > .nav-links {
+  display: inline;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 15px 30px 12px 30px;
+  /* margin-top: 4px; */
+  text-decoration: none;
+  color: #000000;
+  border-left: 1px solid rgba(0, 0, 0, 0.082);
+  font-weight: 600;
+  text-align: center;
+}
+
+.nav > .nav-links > a:hover {
+  background-color: #ffecfc;
+  color: #D70F64;
+}
+
+.nav > #nav-check {
+  display: none;
+}
+
+.nav-icon{
+    font-size: 20px;
+    padding: 0px 10px 0px 0px !important;
+    color: #D70F64;
+    font-weight: bold;
+  text-align: center;
+
+}
+
+/* Nav Bottom */
+
+.nav-bottom {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 20px;
+  box-shadow: 0px 11px 11px -11px rgba(215, 15, 100, 0.25);
+  -webkit-box-shadow: 0px 11px 11px -11px rgba(215, 15, 100, 0.25);
+  -moz-box-shadow: 0px 11px 11px -11px rgba(215, 15, 100, 0.25);
+  text-align: center;
+}
+
+.nav-bottom .add-button {
+  background-color: #d70f64;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* Responsivness Work */
+
+@media (max-width: 600px) {
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    padding: 20px;
+  }
+  .nav > .nav-btn > label:hover,
+  .nav #nav-check:checked ~ .nav-btn > label {
+    background-color: #ffecfc;
+  }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #D70F64;
+  }
+  .nav > .nav-links {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    background-color: rgb(255, 241, 253);
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+  }
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+  }
+  .nav > #nav-check:checked ~ .nav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+}
+
+
+/* for removing bootstrap border on focous */
+
+.shadow-remove:focus {
+  border: 0px !important;
+  box-shadow: none !important;
+}
+
+.form-outline input:focus {
+  border-bottom: 1px solid black;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-radius: 0px;
+  transition: 0.4s ease-in-out;
+  box-shadow: none;
+}
+
+.outline-remove:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.borderradius-remove{
+  border-radius: 0px !important;
+}
+
+.addshadow{
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
+}
+
