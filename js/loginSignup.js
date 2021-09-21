@@ -1,5 +1,11 @@
 const firebaseApp = firebase.initializeApp({
-   
+    apiKey: "AIzaSyD3SN5sUnsXtKPg767fJmVUGBiiptzhm3Q",
+    authDomain: "ameen-deliverfood.firebaseapp.com",
+    projectId: "ameen-deliverfood",
+    storageBucket: "ameen-deliverfood.appspot.com",
+    messagingSenderId: "680822620289",
+    appId: "1:680822620289:web:0adc2afa389a52aab7cd80",
+    measurementId: "G-6YCVQ1XW4R"
 });
 
 const auth = firebaseApp.auth();
