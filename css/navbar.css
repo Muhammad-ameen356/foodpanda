@@ -81,6 +81,7 @@ body {
   -webkit-box-shadow: 0px 11px 11px -11px rgba(215, 15, 100, 0.25);
   -moz-box-shadow: 0px 11px 11px -11px rgba(215, 15, 100, 0.25);
   text-align: center;
+  z-index: 10;
 }
 
 .nav-bottom .add-button {
