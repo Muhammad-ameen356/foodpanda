@@ -14,7 +14,6 @@ const showRestaurants = () => {
     let allRestaurant = '';
 
     // console.log(user.uid);
-    auth.onAuthStateChanged((user) => {
         db.collection("resturant").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 // console.log(doc.id, " => ", doc.data());
@@ -24,7 +23,7 @@ const showRestaurants = () => {
                 // console.log(user);
 
 
-                allRestaurant += `<div onclick="showResAllItems('${doc.id}')" class="col-lg-3 col-md-4 col-sm-6 pt-4 d-flex justify-content-center">
+                allRestaurant += `<div onclick="getResid('${doc.id}')" class="col-lg-3 col-md-4 col-sm-6 pt-4 d-flex justify-content-center">
                                             <div class="card" style="width: 17rem; height: 30 !important;">
                                                 <img src="./images/resturant.jpg" class="card-img-top" style="height: 200px;" alt="...">
                                                 <div class="card-body p-0 pt-3">
@@ -41,10 +40,10 @@ const showRestaurants = () => {
                 userResturantShow.innerHTML = allRestaurant;
             });
         });
-    })
-
 }
 
-const showResAllItems = (b) => {
-    console.log(b);
+const getResid= (resid) => {
+    console.log(resid);
+    localStorage.setItem("resid", resid);
+    window.location.href="./userselectresitems.html";
 }

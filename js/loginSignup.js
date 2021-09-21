@@ -78,6 +78,7 @@ const setUserInitialData = (user) => {
         country: signUserCountry,
         city: signUserCity,
         type: "user",
+        userkey: user.uid,
     })
         .then(() => {
             console.log("Document successfully written!");
@@ -120,6 +121,7 @@ const setresturantInitialData = (resturant) => {
         country: signupRescountry,
         city: signuResCity,
         type: "resturant",
+        restaurantkey: resturant.uid,
     })
         .then(() => {
             console.log("Document successfully written!");
