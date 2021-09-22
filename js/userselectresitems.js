@@ -20,8 +20,8 @@ const showResAllItems = () => {
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
-                items += `<div class="box-item pt-3">
+                // console.log(doc.id, " => ", doc.data());
+                items += `<div onclick="cart(${doc.id})" class="box-item pt-3">
                             <div class="Item-nameNimage">
                                 <div class="itemname">
                                     <p><b>${doc.data().itemname}</b><br>${doc.data().itemcategory}</p>
@@ -33,11 +33,21 @@ const showResAllItems = () => {
                                 </div>
                             </div>
                         </div>`
-                allResItems.innerHTML=items;
+                allResItems.innerHTML = items;
             });
         })
         .catch((error) => {
             console.log("Error getting documents: ", error);
         });
+
+}
+
+const cart = (itemid)=>{
+    console.log(itemid);
+    db.collection("items").doc(`${itemid}`)
+    .onSnapshot((doc) => {
+        console.log("Current data: ", doc.data());
+
+    });
 
 }

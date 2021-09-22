@@ -170,3 +170,16 @@ body {
   padding: 12px !important;
   border-radius: 0px !important;
 }
+
+/* Responsivness */
+
+@media screen and (max-width: 1000px) {
+  .mainContent {
+    width: 100%;
+    overflow-x: hidden;
+    z-index: 1;
+  }
+  .mainCart {
+    width: 0%;
+  }
+}
