@@ -10,6 +10,7 @@ const firebaseApp = firebase.initializeApp({
 
 const auth = firebaseApp.auth();
 const db = firebaseApp.firestore();
+const storage = firebaseApp.storage();
 
 // auth.onAuthStateChanged((user) => {
 //     if (user) {

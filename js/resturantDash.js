@@ -13,21 +13,34 @@ auth.onAuthStateChanged((user) => {
 });
 
 const addItem = () => {
-    let resItemName = document.getElementById('resItemName').value, resPrice = document.getElementById('resPrice').value, resCatrgory = document.getElementById('resCatrgory').value, resDeliveryType = document.getElementById('resDeliveryType').value;
+    // Storage
+    const ref = storage.ref('resturant');
+    let file = document.getElementById('resFoodImage').files[0];
+    let date = new Date, name = date.getTime() + '-' + file.name
 
-    let date = new Date(); genID = date.getTime();
-    auth.onAuthStateChanged((res) => {
-        db.collection("items").doc(`${genID}`).set({
-            itemname: resItemName, itemprice: resPrice, itemcategory: resCatrgory, deliverytype: resDeliveryType, key: res.uid,
-        })
-            .then(() => {
-                console.log("Document successfully written!");
-                showItem();
+    const metadata = {contentType: file.type}
+    const task = ref.child(name).put(file, metadata);
+
+    task.then(snapshot => snapshot.ref.getDownloadURL())
+    .then(url => {
+            let resItemName = document.getElementById('resItemName').value, resPrice = document.getElementById('resPrice').value, resCatrgory = document.getElementById('resCatrgory').value, resDeliveryType = document.getElementById('resDeliveryType').value;
+            let genID = date.getTime();
+            auth.onAuthStateChanged((res) => {
+                db.collection("items").doc(`${genID}`).set({
+                    itemname: resItemName, itemprice: resPrice, itemcategory: resCatrgory, deliverytype: resDeliveryType, key: res.uid, imageurl: url
+                })
+                    .then(() => {
+                        console.log("Document successfully written!");
+                        showItem();
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
             })
-            .catch((error) => {
-                console.error("Error writing document: ", error);
-            });
-    });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 }
 const showItem = () => {
     let resItem = document.getElementById('resItem');
@@ -47,7 +60,7 @@ const showItem = () => {
                                         <a href="#" onclick="deleteItem(${doc.id})">Delete</a>
                                     </div>
                                     </div>
-                                    <img src="./images/burger.jpg" class="card-img-top" alt="...">
+                                    <img src="${doc.data().imageurl}" id="image" class="card-img-top" alt="...">
                                     
                                     
                                     <div class="card-body">

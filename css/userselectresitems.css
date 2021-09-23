@@ -171,6 +171,20 @@ body {
   border-radius: 0px !important;
 }
 
+.cartItem{
+  overflow-y: scroll;
+  width: auto;
+  height: 100px;
+  text-align: justify;
+  background-color: #fffcfd;
+  font-size: 16px;
+}
+
+.cartItem .cartItemname{
+  color: #d70f62;
+  font-weight: bold;
+}
+
 /* Responsivness */
 
 @media screen and (max-width: 1000px) {

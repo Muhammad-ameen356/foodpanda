@@ -9,6 +9,8 @@
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-storage-compat.js"></script>
+
     <!-- Bootstrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <!-- Css Styling -->
@@ -78,7 +80,7 @@
                     </div>
                 </div>
                 <div id="allResItems">
-                    
+
                     <!-- <div class="box-item pt-3">
                         <div class="Item-nameNimage">
                             
@@ -104,13 +106,31 @@
                 <h5>Your cart</h5>
             </div>
             <div class="">Start Adding Item To Your Cart</div>
+            <div class="pt-4">
+                <div class="cartItem sub-total" id="cartitem">
+                    <!-- <div class="d-f-j-b pt-4">
+                        <div class="cartItemname">Zinger</div>
+                        <div class="cart">Rs 200</div>
+                    </div>
+                    <div class="text-end">Quatity: 1</div> -->
+                </div>
+            </div>
             <div class="text-muted d-f-j-b sub-total pt-3">
                 <p>Sub Total</p>
-                <p>Rs. 0</p>
+                <p>Rs. <span id="subtotalPrice">0</span></p>
+            </div>
+
+            <div class="d-f-j-b sub-total">
+                <p><b>Delivery Charges</b></p>
+                <b>
+                    <p>Rs. <span id="deliverycharge">0</span></p>
+                </b>
             </div>
             <div class="d-f-j-b sub-total">
                 <p><b>Total(Incl. GST)</b></p>
-                <p><b>Rs. 0</b></p>
+                <b>
+                    <p>Rs. <span id="totalprice">0</span></p>
+                </b>
             </div>
             <div class="checkout-btn">
                 <button class="btn btn-secondary w-100 checkoutbtn-inner"><b>GO TO CHECKOUT</b></button>
@@ -138,6 +158,12 @@
             </div> -->
     </div>
     <!-- </div> -->
+
+    <!-- <div>
+        <input type="file" id="photo"> 
+        <img  alt="" id="image">
+        <button class="btn btn-secondary" onclick="upload()">Upload</button>
+    </div> -->
 
 
 
