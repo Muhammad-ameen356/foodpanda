@@ -12,10 +12,16 @@ body {
   height: 180px;
   object-fit: cover !important;
 }
+#shopNameNav{
+  color: black;
+  padding: 0px 10px 0px 0px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
 
-
-/* Drop Down */
+/* Drop Down for items */
 
 .three-dot {
   position: absolute;
@@ -75,6 +81,52 @@ body {
 .dropdown:hover .dropbtn {
   background-color: rgb(172, 112, 0);
   border-bottom-left-radius: 25px;
+}
+
+
+
+/* Drop Down  for navbar*/
+
+
+.dropdown-nav {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content-nav {
+
+  position: absolute;
+  background-color: white;
+  margin-top: 15px;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: 0;
+
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 0.2s ease-in;
+  transition: max-height 0.2s ease-in;
+}
+
+.dropdown-content-nav a {
+  color: black;
+  padding: 16px 20px;
+  text-decoration: none;
+  display: block;
+  color: black;
+}
+
+.dropdown-content-nav a:hover {
+  background-color: rgba(245, 245, 245, 0.817);
+  color: #d70f62;
+}
+
+.dropdown-nav:hover .dropdown-content-nav {
+  display: block;
+  max-height: 500px;
+  -webkit-transition: max-height 0.2s ease-in;
+  transition: max-height 0.2s ease-in;
 }
 
 /*  */

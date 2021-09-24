@@ -14,15 +14,15 @@ auth.onAuthStateChanged((user) => {
 
 const addItem = () => {
     // Storage
-    const ref = storage.ref('resturant');
+    const ref = storage.ref('resturantItems');
     let file = document.getElementById('resFoodImage').files[0];
     let date = new Date, name = date.getTime() + '-' + file.name
 
-    const metadata = {contentType: file.type}
+    const metadata = { contentType: file.type }
     const task = ref.child(name).put(file, metadata);
 
     task.then(snapshot => snapshot.ref.getDownloadURL())
-    .then(url => {
+        .then(url => {
             let resItemName = document.getElementById('resItemName').value, resPrice = document.getElementById('resPrice').value, resCatrgory = document.getElementById('resCatrgory').value, resDeliveryType = document.getElementById('resDeliveryType').value;
             let genID = date.getTime();
             auth.onAuthStateChanged((res) => {
@@ -83,6 +83,19 @@ const showItem = () => {
 
 }
 
+const navbar = () => {
+    const shopNameNav = document.getElementById('shopNameNav');
+    auth.onAuthStateChanged((res) => {
+    let docRef = db.collection("resturant").doc(res.uid);
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            const shopname = doc.data().name; namehalf = shopname.substring(0, 14)
+            shopNameNav.innerHTML = `${namehalf}....`;
+        } else { console.log("No such document!"); }
+    }).catch((error) => { console.log("Error getting document:", error); });
+})
+}
+
 const deleteItem = (id) => {
     console.log(id);
     db.collection("items").doc(`${id}`).delete().then(() => {
@@ -96,4 +109,17 @@ const deleteItem = (id) => {
 const editItem = (id) => {
     console.log(id);
     // 
+}
+
+
+const freeOrpaid = () => {
+    let resDeliveryType = document.getElementById('resDeliveryType').value, delvcharginp = document.getElementById('delvcharginp'), delvcharlab = document.getElementById('delvcharlab');
+
+    if (resDeliveryType == "Paid") {
+        delvcharginp.style.display = "block"
+        delvcharlab.style.display = "block"
+    } else {
+        delvcharginp.style.display = "none"
+        delvcharlab.style.display = "none"
+    }
 }

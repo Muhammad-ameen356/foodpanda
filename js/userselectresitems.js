@@ -43,7 +43,7 @@ const showResAllItems = () => {
 
 }
 
-// const deliverycharges
+//todo: const deliverycharges
 
 const cart = (itemid) => {
     let subtotalPrice = document.getElementById('subtotalPrice'); totalprice = document.getElementById('totalprice'); subnum = Number(subtotalPrice.textContent); totnum = Number(totalprice.textContent);
@@ -73,8 +73,11 @@ const addcartitem = (itemid) => {
         });
 }
 
-let cartitem = document.getElementById('cartitem');
-console.log(cartitem.textContent.length);
+const checkout =()=>{
+
+    
+}
+
 
 
 

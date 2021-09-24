@@ -123,6 +123,12 @@ const setresturantInitialData = (resturant) => {
         city: signuResCity,
         type: "resturant",
         restaurantkey: resturant.uid,
+        imageurl:"",
+        deal: "",
+        operorclose: "",
+        wrkinghours: "",
+        address:"",
+        category:"",
     })
         .then(() => {
             console.log("Document successfully written!");

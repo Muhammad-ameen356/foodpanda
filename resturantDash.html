@@ -22,7 +22,7 @@
     <title>Login | Food</title>
 </head>
 
-<body onload="showItem()">
+<body onload="showItem(); navbar()">
     <!-- Navbar -->
     <div class="nav">
         <input type="checkbox" id="nav-check">
@@ -40,13 +40,22 @@
         </div>
 
         <div class="nav-links">
+                <div class="dropdown-nav">
+                    <span id="shopNameNav"></span>
+                    <i class="bi bi-person-circle nav-icon"></i>
+                        <div class="dropdown-content-nav">
+                            <!-- <a href="#" onclick="">My orders</a> -->
+                            <a href="./resturantProfile.html" onclick="">Profile</a>
+                            <a href="#" onclick="">Help Center</a>
+                            <a href="#" onclick="logout()">Logout</a>
+                        </div>
+                    </div>
+
             <a href="#">EN</a>
             <a href="#">
                 <i class="bi bi-bar-chart-line"></i>
                 Dashboard</a>
-            <a href="" onclick="logout()">
-                <i class="bi bi-person-circle nav-icon"></i>
-                LOGOUT</a>
+
         </div>
     </div>
     <div class="nav-bottom">
@@ -59,7 +68,7 @@
 
     <div class="container my-4">
         <div class="row" id="resItem">
-            
+
         </div>
     </div>
 
@@ -112,12 +121,20 @@
                         <br>
                         <div class="form-outline">
                             <label for="resDeliveryType" class="form-label">Delivery Type</label>
-                            <select id="resDeliveryType" class="form-select shadow-remove borderradius-remove"
+                            <select id="resDeliveryType" onchange="freeOrpaid()"
+                                class="form-select shadow-remove borderradius-remove"
                                 aria-label="Default select example">
                                 <option value="Not selected" selected>Delivery Type</option>
                                 <option value="Free">Free</option>
                                 <option value="Paid">Paid</option>
                             </select>
+                        </div>
+                        <div class="form-outline">
+                            <label for="delvcharginp" class="form-label" id="delvcharlab"
+                                style="display: none;">Delivery Charges</label>
+                            <input type="number" class="form-control shadow-remove borderradius-remove"
+                                style="display: none;" placeholder="Delivery Charges" id="delvcharginp"
+                                aria-describedby="emailHelp">
                         </div>
                     </form>
                 </div>
