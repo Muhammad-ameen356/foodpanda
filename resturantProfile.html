@@ -63,16 +63,40 @@
 
     <div class="container">
         <h1 class="text-center pt-3">Resturant Profile</h1>
-        <h5 class="" >Resturant Name <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-fill" style="font-size: 16px;"></i></span></h5>
+        <h5 class="">Resturant Name
+            <span data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="getResName()">
+                <i class="bi bi-pencil-fill" style="font-size: 16px;"></i>
+            </span>
+        </h5>
         <p id="resName"></p>
-        
-        <h5>Address <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-fill" style="font-size: 16px;"></i></span></h5>
-        <p id="resAddr"></p>
-        <h5 >Phone Number <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-fill" style="font-size: 16px;"></i></span></h5>
-        <p id="resPhone"></p>
 
-        <h5>Any Deal or Discount <span data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-fill" style="font-size: 16px;"></i></span></h5>
-        <p id="resDeal">sadas</p>
+        <h5>Address
+            <span data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="getResAdress()">
+                <i class="bi bi-pencil-fill" style="font-size: 16px;"></i>
+            </span>
+        </h5>
+        <p id="resAddr">Add Address Of Your Restaurant</p>
+
+        <h5>Phone Number
+            <span data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="getResPhone()">
+                <i class="bi bi-pencil-fill" style="font-size: 16px;"></i>
+            </span>
+        </h5>
+        <p id="resPhone">You Dont Have any Phone Number</p>
+
+         <h5>Any Deal or Discount
+            <span data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="getResDeal()">
+                <i class="bi bi-pencil-fill" style="font-size: 16px;"></i>
+            </span>
+        </h5>
+        <p id="resDeal">Add Biggest Deal On Your Store For More Coustomer</p>
+
+        <h5>Delivey Charges
+            <span data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="getResDelvCharg()">
+                <i class="bi bi-pencil-fill" style="font-size: 16px;"></i>
+            </span>
+        </h5>
+        <p id="resDelivcharg">Add Delivery Charges <b> (Default Free)</b></p>
 
         <input type="file" accept="image/png, image/jpeg" id="MainResImage">
         <button class="btn btn-primary" onclick="uploadImage()">Update image</button>
@@ -83,32 +107,77 @@
     </div>
 
     <!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Launch demo modal
   </button> -->
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="form-outline">
-                <label for="resFoodImage" class="form-label"></label>
-                <input type="text" class="form-control shadow-remove borderradius-remove" id=""
-                    aria-describedby="emailHelp">
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-outline">
+                        <label for="resProfileEditModal" class="form-label"></label>
+                        <input type="text" class="form-control shadow-remove borderradius-remove"
+                            id="resProfileEditModal" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-outline pt-4">
+                        <!-- <label for="dealoption" class="form-label">Add Deal</label> -->
+                        <select id="dealoption" class="form-select shadow-remove borderradius-remove"
+                            aria-label="Default select example">
+                            <option value="">None</option>
+                            <option value="Chil Out Deals">Chil Out Deals</option>
+                            <option value="Chil Out">Chil Out</option>
+                            <option value="Flat">Flat</option>
+                            <option value="Discount">Discount</option>
+                            <option value="Rs">Rs</option>
+                        </select>
+                    </div>
+                    <div class="form-outline pt-4">
+                        <select id="dealnumber" class="form-select shadow-remove borderradius-remove"
+                            aria-label="Default select example">
+                            <option value="">None</option>
+                            <option value="10%">10%</option>
+                            <option value="10% OFF">10% OFF</option>
+                            <option value="20%">20%</option>
+                            <option value="20% OFF">20% OFF</option>
+                            <option value="30%">30%</option>
+                            <option value="30% OFF">30% OFF</option>
+                            <option value="40%">40%</option>
+                            <option value="40% OFF">40% OFF</option>
+                            <option value="50%">50%</option>
+                            <option value="50% OFF">50% OFF</option>
+                            <option value="60%">60%</option>
+                            <option value="60% OFF">60% OFF</option>
+                            <option value="70%">70%</option>
+                            <option value="70% OFF">70% OFF</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="updateNamebtn" onclick="updateName()"
+                        style="display: none;" data-bs-dismiss="modal">Update Name</button>
+                    <button type="button" class="btn btn-secondary" id="updateAddbtn" onclick="updateAddress()"
+                        style="display: none;" data-bs-dismiss="modal">Update Address</button>
+                    <button type="button" class="btn btn-success" id="updatePhonebtn" onclick="updateNumber()"
+                        style="display: none;" data-bs-dismiss="modal">Update Phone Number</button>
+                    <button type="button" class="btn btn-warning" id="addDealbtn" onclick="addDeal()"
+                        style="display: none;" data-bs-dismiss="modal">Add Deal</button>
+                        <button type="button" class="btn btn-danger" id="addDelvChargbtn" onclick="addDealvcharg()"
+                        style="display: none;" data-bs-dismiss="modal">Add Delivery Charges</button>
+
+
+                </div>
             </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-  </div>
 
 
     <script src="./js/loginSignup.js"></script>

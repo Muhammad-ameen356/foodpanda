@@ -129,6 +129,8 @@ const setresturantInitialData = (resturant) => {
         wrkinghours: "",
         address:"",
         category:"",
+        phonenumber:"",
+        deliverycharges:"",
     })
         .then(() => {
             console.log("Document successfully written!");

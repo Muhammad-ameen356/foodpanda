@@ -1,15 +1,16 @@
 const showResAllItems = () => {
     var id = localStorage.getItem("resid");
-    let resName = document.getElementById('resName'), mainResName = document.getElementById('mainResName'), allResItems = document.getElementById('allResItems'), deliverycharge = document.getElementById('deliverycharge');
+    let resName = document.getElementById('resName'), mainResName = document.getElementById('mainResName'), allResItems = document.getElementById('allResItems'), deliverycharges = document.getElementById('deliverycharges'); deal = document.getElementById('deal');
     let items = '';
     // FOr Getting Resturant Data
     db.collection("resturant").where("restaurantkey", "==", id).get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                // console.log(doc.id, " => ", doc.data().name);
+                // console.log(doc.id, " => ", doc.data());
                 resName.innerHTML = `${doc.data().name} Restaurant Items`
                 mainResName.innerHTML = `${doc.data().name}`
-                // deliverycharge.innerHTML = `${doc.data().deliverycharges}`
+                deal.innerHTML = `${doc.data().deal}`
+                deliverycharges.innerHTML = `${doc.data().deliverycharges}`
             });
         })
         .catch((error) => {
@@ -47,21 +48,26 @@ const showResAllItems = () => {
 
 const cart = (itemid) => {
     let subtotalPrice = document.getElementById('subtotalPrice'); totalprice = document.getElementById('totalprice'); subnum = Number(subtotalPrice.textContent); totnum = Number(totalprice.textContent);
-
-    db.collection("items").doc(`${itemid}`)
-        .onSnapshot((doc) => {
-            var itemprice = Number(doc.data().itemprice);
-            // console.log("Current data: ", doc.data());
-            subtotalPrice.innerHTML = (subnum + itemprice);
-            totalprice.innerHTML = (totnum + itemprice);
-        });
+    let id = localStorage.getItem("resid");
+    db.collection("resturant").doc(id)
+        .onSnapshot((res) => {
+            console.log(res.data());
+            db.collection("items").doc(`${itemid}`)
+                .onSnapshot((doc) => {
+                    let itemprice = Number(doc.data().itemprice);
+                    let delch = Number(res.data().deliverycharges);
+                    // console.log("Current data: ", doc.data());
+                    subtotalPrice.innerHTML = (subnum + itemprice);
+                    totalprice.innerHTML = (totnum + itemprice + delch);
+                    console.log(delch);
+                });
+        })
 }
 
 
 const addcartitem = (itemid) => {
     let cartitem = document.getElementById('cartitem');
     let html = ''
-    console.log(cartitem.textContent.length);
     db.collection("items").doc(`${itemid}`)
         .onSnapshot((doc) => {
             html += `<div class="d-f-j-b pt-4">
@@ -73,9 +79,9 @@ const addcartitem = (itemid) => {
         });
 }
 
-const checkout =()=>{
+const checkout = () => {
 
-    
+
 }
 
 
