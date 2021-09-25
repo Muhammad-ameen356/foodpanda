@@ -49,6 +49,7 @@ function showloginpassword() {
 
 // SignUp As User
 const userSignUp = () => {
+    loader.style.display = "block"
     let email = document.getElementById('signUserEmail').value;
     let pass = document.getElementById('signUserPass').value;
 
@@ -84,6 +85,7 @@ const setUserInitialData = (user) => {
         .then(() => {
             console.log("Document successfully written!");
             window.location.href = "./login.html";
+            loader.style.display = "none"
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
@@ -92,6 +94,7 @@ const setUserInitialData = (user) => {
 
 // SignUp As Resturant
 const resturantSignUp = () => {
+    loader.style.display = "block"
     let signupResEmail = document.getElementById('signupResEmail').value;
     let signupResPassword = document.getElementById('signupResPassword').value;
 
@@ -123,18 +126,20 @@ const setresturantInitialData = (resturant) => {
         city: signuResCity,
         type: "resturant",
         restaurantkey: resturant.uid,
-        imageurl:"",
+        imageurl: "",
         deal: "",
         operorclose: "",
         wrkinghours: "",
-        address:"",
-        category:"",
-        phonenumber:"",
-        deliverycharges:"",
+        address: "",
+        category: "",
+        phonenumber: "",
+        deliverycharges: "",
     })
         .then(() => {
             console.log("Document successfully written!");
             window.location.href = "./login.html";
+            loader.style.display = "none"
+
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
@@ -144,12 +149,15 @@ const setresturantInitialData = (resturant) => {
 const login = () => {
     let loginnameoremail = document.getElementById('loginnameoremail').value;
     let loginpassword = document.getElementById('loginpassword').value;
+    let loader = document.getElementById('loader');
+    loader.style.display = "block";
 
     auth.signInWithEmailAndPassword(loginnameoremail, loginpassword)
         .then((userCredential) => {
             var user = userCredential.user;
             // console.log(user.uid);
             authStateListener();
+            loader.style.display = "none"
         })
         .catch((error) => {
             var errorCode = error.code;
@@ -188,13 +196,13 @@ const typeCheck = (user) => {
     });
 }
 
-const logout = () =>{
+const logout = () => {
     auth.signOut().then(() => {
         // Sign-out successful.
         console.log("Sign-out successful.");
-        window.location.href="./login.html"
-      }).catch((error) => {
+        window.location.href = "./login.html"
+    }).catch((error) => {
         // An error happened.
         console.log(error);
-      });
+    });
 }

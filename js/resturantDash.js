@@ -13,6 +13,7 @@ auth.onAuthStateChanged((user) => {
 });
 
 const addItem = () => {
+    loader.style.display = "block"
     // Storage
     const ref = storage.ref('resturantItems');
     let file = document.getElementById('resFoodImage').files[0];
@@ -23,15 +24,16 @@ const addItem = () => {
 
     task.then(snapshot => snapshot.ref.getDownloadURL())
         .then(url => {
-            let resItemName = document.getElementById('resItemName').value, resPrice = document.getElementById('resPrice').value, resCatrgory = document.getElementById('resCatrgory').value, resDeliveryType = document.getElementById('resDeliveryType').value;
+            let resItemName = document.getElementById('resItemName').value; resPrice = document.getElementById('resPrice').value; resCatrgory = document.getElementById('resCatrgory').value;
             let genID = date.getTime();
             auth.onAuthStateChanged((res) => {
                 db.collection("items").doc(`${genID}`).set({
-                    itemname: resItemName, itemprice: resPrice, itemcategory: resCatrgory, deliverytype: resDeliveryType, key: res.uid, imageurl: url
+                    itemname: resItemName, itemprice: resPrice, itemcategory: resCatrgory, key: res.uid, imageurl: url
                 })
                     .then(() => {
                         console.log("Document successfully written!");
                         showItem();
+                        loader.style.display = "none"
                     })
                     .catch((error) => {
                         console.error("Error writing document: ", error);
@@ -43,6 +45,7 @@ const addItem = () => {
         })
 }
 const showItem = () => {
+    loader.style.display = "block"
     let resItem = document.getElementById('resItem');
     let html = '';
     auth.onAuthStateChanged((res) => {
@@ -67,13 +70,13 @@ const showItem = () => {
                                         <p class="" style="font-size: 25px;"><b>${doc.data().itemname}</b></p>
                                     <div class="d-flex justify-content-between">
                                         <p class="" style="font-size: 16px;">PKR: ${doc.data().itemprice}</p>
-                                        <p class="" style="font-size: 16px;"><i class="bi bi-truck"></i> ${doc.data().deliverytype}</p>
                                     </div>
 
                                     </div>
                                 </div>
                             </div>`
                 resItem.innerHTML = html;
+                loader.style.display = "none";
             });
         })
             .catch((error) => {
@@ -97,9 +100,11 @@ const navbar = () => {
 }
 
 const deleteItem = (id) => {
+    loader.style.display = "block"
     console.log(id);
     db.collection("items").doc(`${id}`).delete().then(() => {
         console.log("Document successfully deleted!");
+        loader.style.display = "none"
     }).catch((error) => {
         console.error("Error removing document: ", error);
     });

@@ -1,4 +1,5 @@
 const uploadImage = () => {
+    loader.style.display = "block";
     auth.onAuthStateChanged((res) => {
         const ref = storage.ref('resturantProfile');
         let file = document.getElementById('MainResImage').files[0];
@@ -10,30 +11,29 @@ const uploadImage = () => {
             .then(url => {
                 uploadImageFirestore(url, res)
                 console.log(url);
+                loader.style.display = "none";
+
             })
             .catch((err) => { console.log(err); })
     })
 }
 
 const uploadImageFirestore = (url, res) => {
-    let mainImage = document.getElementById('mainImage');
-
     var resRef = db.collection("resturant").doc(res.uid);
     resRef.update({
         imageurl: url
     })
         .then(() => {
             console.log("Document successfully updated!");
+
         })
         .catch((error) => {
             console.error("Error updating document: ", error);
         });
-    // resRef.onSnapshot((doc) => {
-    //     mainImage.src = doc.data().imageurl;
-    // });
 }
 
 const profileDataShow = () => {
+    loader.style.display = "block";
     let resName = document.getElementById('resName');
     let resAddr = document.getElementById('resAddr');
     let resPhone = document.getElementById('resPhone');
@@ -71,7 +71,7 @@ const profileDataShow = () => {
             } else {
                 mainImage.src = doc.data().imageurl;
             }
-
+            loader.style.display = "none";
         });
     })
 }

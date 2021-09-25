@@ -126,6 +126,7 @@ body {
   padding: 0px 20px 0px 20px;
 }
 
+
 .plus-item{
     position: relative;
     display: flex;
@@ -134,7 +135,7 @@ body {
     font-size: 30px;
     padding: 0px !important;
     bottom: 0 !important;
-    margin-bottom: -20px;
+    margin-top: -4px;
     margin-right: -20px;
     color: #d70f62;
 }
