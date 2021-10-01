@@ -186,6 +186,12 @@ body {
   font-weight: bold;
 }
 
+/* .quantity input{
+  color: #fcc54c;
+  width: fit-content;
+  height: fit-content;
+} */
+
 /* Responsivness */
 
 @media screen and (max-width: 1000px) {

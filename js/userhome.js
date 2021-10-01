@@ -1,28 +1,11 @@
-// auth.onAuthStateChanged((user) => {
-//     if (user) {
-//         console.log(user);
-//         // console.log(user.uid);
-//     } else {
-//         console.log("User Logged Out");
-//     }
-// });
-
-
-
 const showRestaurants = () => {
     loader.style.display = "block";
     let userResturantShow = document.getElementById('userResturantShow');
     let allRestaurant = '';
 
-    // console.log(user.uid);
     db.collection("resturant").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             console.log(doc.id, " => ", doc.data());
-            // console.log(doc.id, " => ", doc.data().name);
-            let aaaa = doc.id
-            console.log(doc);
-            // console.log(user);
-
 
             allRestaurant += `<div onclick="getResid('${doc.id}')" class="col-lg-3 col-md-4 col-sm-6 pt-4 d-flex justify-content-center">
                                             <div class="card" style="width: 17rem; height: 30 !important;">

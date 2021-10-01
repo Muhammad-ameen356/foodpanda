@@ -49,6 +49,8 @@ function showloginpassword() {
 
 // SignUp As User
 const userSignUp = () => {
+    let loader = document.getElementById('loader');
+
     loader.style.display = "block"
     let email = document.getElementById('signUserEmail').value;
     let pass = document.getElementById('signUserPass').value;
@@ -58,11 +60,14 @@ const userSignUp = () => {
             var user = userCredential.user;
             console.log(user);
             setUserInitialData(user);
+            loader.style.display = "none"
         })
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
-            console.log(errorMessage)
+            console.log(errorMessage);
+            loader.style.display = "none"
+
         });
 }
 
@@ -85,7 +90,6 @@ const setUserInitialData = (user) => {
         .then(() => {
             console.log("Document successfully written!");
             window.location.href = "./login.html";
-            loader.style.display = "none"
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
@@ -94,6 +98,8 @@ const setUserInitialData = (user) => {
 
 // SignUp As Resturant
 const resturantSignUp = () => {
+    let loader = document.getElementById('loader');
+
     loader.style.display = "block"
     let signupResEmail = document.getElementById('signupResEmail').value;
     let signupResPassword = document.getElementById('signupResPassword').value;
@@ -103,12 +109,13 @@ const resturantSignUp = () => {
             var resturant = userCredential.user;
             console.log(resturant);
             setresturantInitialData(resturant);
-
+            loader.style.display = "none"
         })
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
-            console.log(errorMessage)
+            console.log(errorMessage);
+            loader.style.display = "none";
         });
 }
 
@@ -138,8 +145,6 @@ const setresturantInitialData = (resturant) => {
         .then(() => {
             console.log("Document successfully written!");
             window.location.href = "./login.html";
-            loader.style.display = "none"
-
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
@@ -150,14 +155,14 @@ const login = () => {
     let loginnameoremail = document.getElementById('loginnameoremail').value;
     let loginpassword = document.getElementById('loginpassword').value;
     let loader = document.getElementById('loader');
-    loader.style.display = "block";
 
+    loader.style.display = "block";
     auth.signInWithEmailAndPassword(loginnameoremail, loginpassword)
         .then((userCredential) => {
             var user = userCredential.user;
             // console.log(user.uid);
             authStateListener();
-            loader.style.display = "none"
+
         })
         .catch((error) => {
             var errorCode = error.code;
@@ -179,6 +184,8 @@ const authStateListener = () => {
 }
 
 const typeCheck = (user) => {
+    let loader = document.getElementById('loader');
+
     var docRef = db.collection("users").doc(user.uid);
     docRef.get().then((usersnapshot) => {
         if (usersnapshot.data() == undefined) {
@@ -187,22 +194,29 @@ const typeCheck = (user) => {
                 if (ressnapshot.data().type == "resturant") {
                     // console.log("resturant mil gya");
                     window.location.href = "./resturantDash.html";
+                    loader.style.display = "none"
                 }
             });
         } else if (usersnapshot.data().type == "user") {
             // console.log("user found", usersnapshot.data());
             window.location.href = "./userhome.html"
+            loader.style.display = "none"
         }
     });
 }
 
 const logout = () => {
+    let loader = document.getElementById('loader');
+
+    loader.style.display = "block"
     auth.signOut().then(() => {
         // Sign-out successful.
         console.log("Sign-out successful.");
+        loader.style.display = "none";
         window.location.href = "./login.html"
     }).catch((error) => {
         // An error happened.
         console.log(error);
+        loader.style.display = "none"
     });
 }

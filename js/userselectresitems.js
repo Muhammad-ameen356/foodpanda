@@ -5,15 +5,18 @@ let id = localStorage.getItem("resid");
 let resName = document.getElementById('resName'), mainResName = document.getElementById('mainResName'), allResItems = document.getElementById('allResItems'), deliverycharges = document.getElementById('deliverycharges'); deal = document.getElementById('deal'); mainHeaderImage = document.getElementById('mainHeaderImage');
 const showResAllItems = () => {
     loader.style.display = "block";
-
     let items = '';
 
     resturantData();
     disableCheckout();
     // FOr Getting Resturant Items
     db.collection("items").where("key", "==", id).get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            items += `<div id="w${doc.id}" onclick="addcartitem(${doc.id}); cart(${doc.id});" class="box-item pt-3">
+        if (querySnapshot.empty) {
+            allResItems.innerHTML = `<h2 class="text-center">No Items Added By Resturant</h2>`;
+            loader.style.display = "none";
+        } else {
+            querySnapshot.forEach((doc) => {
+                items += `<div id="w${doc.id}" onclick="addcartitem(${doc.id}); cart(${doc.id});" class="box-item pt-3">
                             <div class="Item-nameNimage">
                                 <div class="itemname">
                                     <p><b>${doc.data().itemname}</b><br>${doc.data().itemcategory}</p>
@@ -25,13 +28,14 @@ const showResAllItems = () => {
                                 </div>
                             </div>
                         </div>`
-            allResItems.innerHTML = items;
-            loader.style.display = "none"
-        });
-    })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-        });
+                allResItems.innerHTML = items;
+                loader.style.display = "none"
+            });
+        }
+    }).catch((error) => {
+        console.log("Error getting documents: ", error);
+        alert(error)
+    });
 }
 
 const resturantData = () => {
@@ -44,10 +48,10 @@ const resturantData = () => {
             deliverycharges.innerHTML = `${doc.data().deliverycharges}`
             mainHeaderImage.src = `${doc.data().imageurl}`
         });
-    })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-        });
+    }).catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+
     let x = cartitem.getElementsByTagName("div").length;
     if (x == 0) {
         cartitem.style.display = "none"
@@ -64,7 +68,7 @@ const addcartitem = (itemid) => {
         .onSnapshot((doc) => {
             html += `<div id="removeThisItem">
                         <div class="d-f-j-b pt-3" >
-                            <div class="cartItemname">${doc.data().itemname}</div>
+                            <div class="cartItemname" id="cartitemnameid">${doc.data().itemname}</div>
                             <div class="cartPrice text-muted">Rs ${doc.data().itemprice}</div>
                         </div>
                         <div class="d-f-j-b pt-2" style="cursor: pointer;">
@@ -77,12 +81,6 @@ const addcartitem = (itemid) => {
         });
     disableCheckout();
     let itemforchange = document.getElementById(`w${itemid}`);
-    // itemforchange.style.visibility = "hidden";
-    // loader.style.display = "block"
-    // setTimeout(() => {
-    //     // itemforchange.style.visibility = "visible";
-    //     loader.style.display = "none"
-    // }, 1500);
 
 }
 
@@ -125,7 +123,7 @@ const removefromCart = (price) => {
 
     let removeThisItem = document.getElementById('removeThisItem');
     removeThisItem.remove();
-    disableCheckout()
+    disableCheckout();
 }
 
 
@@ -140,10 +138,37 @@ const disableCheckout = () => {
 }
 
 const orderPlace = () => {
+    loader.style.display = "block"
+    let totalprice = document.getElementById('totalprice');
+    let subtotalPrice = document.getElementById('subtotalPrice');
     let totnum = Number(totalprice.textContent);
-    console.log(totnum);
-    let removeThisItem = document.getElementById('removeThisItem');
-    
+    // let removeThisItem = document.getElementById('removeThisItem');
+    // let cartitemnameid = document.getElementById('cartitemnameid');
+
+    // let x = cartitem.getElementsByClassName("cartItemname");
+    auth.onAuthStateChanged((user) => {
+        let date = new Date(); time = date.getTime();
+        db.collection("orders").doc(`${time}`).set({
+            total: totnum,
+            items: cartitem.innerText,
+            resturantid: id,
+            orderid: time,
+            watch: "Pending",
+            userid: user.uid,
+        }).then(() => {
+            console.log("Document successfully written!");
+            totalprice.innerHTML = 0; subtotalPrice.innerHTML = 0;
+            while (cartitem.hasChildNodes()) {
+                cartitem.removeChild(cartitem.firstChild);
+            }
+            loader.style.display = "none";
+            // alert('order Placed Successfully');
+            disableCheckout()
+        }).catch((error) => {
+            console.error("Error writing document: ", error);
+            loader.style.display = "none";
+        });
+    })
 }
 
 
