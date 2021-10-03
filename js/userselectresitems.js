@@ -137,38 +137,73 @@ const disableCheckout = () => {
     }
 }
 
+const checkOut = () => {
+    let totalprice = document.getElementById('totalprice');
+    let totalWithDelivery = document.getElementById('totalWithDelivery');
+
+    let totnum = Number(totalprice.textContent);
+    let delevirynum = Number(deliverycharges.textContent)
+    let totCharges = (totnum + delevirynum);
+
+    totalWithDelivery.innerHTML = `Total: ${totCharges}`;
+}
+
 const orderPlace = () => {
     loader.style.display = "block"
     let totalprice = document.getElementById('totalprice');
     let subtotalPrice = document.getElementById('subtotalPrice');
-    let totnum = Number(totalprice.textContent);
-    // let removeThisItem = document.getElementById('removeThisItem');
-    // let cartitemnameid = document.getElementById('cartitemnameid');
+    let deliverycharges = document.getElementById('deliverycharges');
 
-    // let x = cartitem.getElementsByClassName("cartItemname");
-    auth.onAuthStateChanged((user) => {
-        let date = new Date(); time = date.getTime();
-        db.collection("orders").doc(`${time}`).set({
-            total: totnum,
-            items: cartitem.innerText,
-            resturantid: id,
-            orderid: time,
-            watch: "Pending",
-            userid: user.uid,
-        }).then(() => {
-            console.log("Document successfully written!");
-            totalprice.innerHTML = 0; subtotalPrice.innerHTML = 0;
-            while (cartitem.hasChildNodes()) {
-                cartitem.removeChild(cartitem.firstChild);
-            }
-            loader.style.display = "none";
-            // alert('order Placed Successfully');
-            disableCheckout()
-        }).catch((error) => {
-            console.error("Error writing document: ", error);
-            loader.style.display = "none";
-        });
-    })
+    let userOrderName = document.getElementById('userOrderName').value;
+    let userOrderNum = document.getElementById('userOrderNum').value;
+    let userOrderDeliveradd = document.getElementById('userOrderDeliveradd').value;
+    let orderPayment = document.getElementById('orderPayment').value;
+
+    let totnum = Number(totalprice.textContent);
+    let delevirynum = Number(deliverycharges.textContent)
+
+    let totCharges = (totnum + delevirynum);
+    console.log(totnum);
+    console.log(totCharges);
+
+    let date = new Date();
+    let placeordertime = (date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " Time " + date.getHours() + " : " + date.getMinutes());
+
+    if ((userOrderName && userOrderNum && userOrderDeliveradd && orderPayment).length !== 0) {
+        console.log("not Empty");
+        auth.onAuthStateChanged((user) => {
+            time = date.getTime();
+            db.collection("orders").doc(`${time}`).set({
+                customerName: userOrderName,
+                customerPhone: userOrderNum,
+                customerAddress: userOrderDeliveradd,
+                customerPayment: orderPayment,
+                total: totCharges,
+                items: cartitem.innerText,
+                dateandtime: placeordertime,
+                resturantid: id,
+                orderid: time,
+                watch: "Pending",
+                userid: user.uid,
+            }).then(() => {
+                console.log("Document successfully written!");
+                totalprice.innerHTML = 0; subtotalPrice.innerHTML = 0;
+                while (cartitem.hasChildNodes()) {
+                    cartitem.removeChild(cartitem.firstChild);
+                }
+                loader.style.display = "none";
+                disableCheckout();
+                swal("Your Order Placed! Click On basket to check your order status");
+            }).catch((error) => {
+                console.error("Error writing document: ", error);
+                loader.style.display = "none";
+            });
+        })
+    } else {
+        console.log("Empty");
+        loader.style.display = "none";
+        swal("Please Fill All information correctly");
+    }
 }
 
 

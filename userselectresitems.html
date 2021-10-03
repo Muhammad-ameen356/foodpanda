@@ -28,7 +28,7 @@
 
 <body onload="showResAllItems()">
 
-    <div id="loader" style="display: none;"> 
+    <div id="loader" style="display: none;">
         <div class="loader3">
             <span></span>
             <span></span>
@@ -52,10 +52,10 @@
         </div>
 
         <div class="nav-links">
-            <a href="" target="_blank">EN</a>
+            <a href="./userhome.html">Home</a>
             <a href="" onclick="logout()">
                 <i class="bi bi-person-circle nav-icon"></i>LOGOUT</a>
-            <a href="" target="_blank"><i class="bi bi-cart4 nav-icon"></i></a>
+            <a href="./userDashboard.html"><i class="bi bi-cart4 nav-icon"></i></a>
         </div>
     </div>
 
@@ -142,7 +142,8 @@
                 </b>
             </div>
             <div class="checkout-btn">
-                <button class="btn btn-secondary w-100 checkoutbtn-inner" id="checkoutbtn" onclick="orderPlace()">
+                <button class="btn btn-secondary w-100 checkoutbtn-inner" id="checkoutbtn" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop" onclick="checkOut()">
                     <b>Place Order</b>
                 </button>
             </div>
@@ -177,11 +178,73 @@
     </div> -->
 
 
+    <!--! Modal Box -->
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content borderradius-remove">
+                <div class="modal-header d-flex justify-content-center">
+                    <h5 class="modal-title" id="staticBackdropLabel">PLACE ORDER</h5>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body">
+                    <form id="addingmemberform" class="container">
+                        
+                        <div class="form-outline">
+                            <label for="userOrderName" class="form-label">Your Name</label>
+                            <input type="text" class="form-control shadow-remove borderradius-remove"
+                                placeholder="Enter Your Name" id="userOrderName" aria-describedby="emailHelp">
+                        </div>
+                        <br>
+                        <div class="form-outline">
+                            <label for="userOrderNum" class="form-label">Mobile Number</label>
+                            <input type="number" class="form-control shadow-remove borderradius-remove"
+                                placeholder="Mobile Number" id="userOrderNum" aria-describedby="emailHelp">
+                        </div>
+                        <br>
+                        <div class="form-outline">
+                            <label for="userOrderDeliveradd" class="form-label">Deliver at</label>
+                            <input type="text" class="form-control shadow-remove borderradius-remove"
+                                placeholder="Your Complete Address" id="userOrderDeliveradd" aria-describedby="emailHelp">
+                        </div>
+                        <br>
+                        <div class="form-outline">
+                            <label for="orderPayment" class="form-label">Payment</label>
+                            <select id="orderPayment" class="form-select shadow-remove borderradius-remove"
+                                aria-label="Default select example">
+                                <option value="Not selected" selected></option>
+                                <option value="Hand to Hand">Hand to Hand</option>
+                                <option value="Online">Online</option>
+                            </select>
+                        </div>
+                        <br>
+                        <span>Total Payment With Delivery Charges</span>
+                        <br>
+                        <b><span id="totalWithDelivery"></span></b>
+                    </form>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" id="createteamid" onclick="orderPlace()"
+                        class="btn btn-info text-white borderradius-remove shadow-remove" data-bs-dismiss="modal">
+                        Place Order
+                    </button>
+                    <button type="button" id="cancelbutton"
+                        class="btn btn-warning text-white borderradius-remove shadow-remove" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
 
     <script src="./js/loginSignup.js"></script>
     <script type="text/javascript" src="./js/userselectresitems.js"></script>
+    <script src="./js/sweetalert.min.js"></script>
 
     <!-- Bootstrap v.5.0 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

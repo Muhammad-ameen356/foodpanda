@@ -58,25 +58,23 @@ const showItem = () => {
             }
             else {
                 querySnapshot.forEach((doc) => {
-                    html += `<div class="col-md-4 cl-sm-12 my-2">
-                    <div class="card" style="width: 18rem;">
-                    <div class="dropdown">
-                    <i class="bi bi-three-dots-vertical dropbtn three-dot"></i>
-                    <div class="dropdown-content">
-                    <a href="#" onclick="editItem(${doc.id})">Edit</a>
-                    <a href="#" onclick="deleteItem(${doc.id}, '${doc.data().imagename}')">Delete</a>
-                    </div>
-                    </div>
-                    <img src="${doc.data().imageurl}" id="image" class="card-img-top" alt="...">
+                    html += `<div class="col-lg-3 col-md-4 col-sm-6 pt-4 d-flex justify-content-center">
+                    <div class="card" style="width: 17rem; height: 30 !important;">
+                        <div class="dropdown">
+                                <i class="bi bi-three-dots-vertical dropbtn three-dot"></i>
+                            <div class="dropdown-content">
+                                <a href="#" onclick="editItem(${doc.id})">Edit</a>
+                                <a href="#" onclick="deleteItem(${doc.id}, '${doc.data().imagename}')">Delete</a>
+                            </div>
+                        </div>
+                        <img src="${doc.data().imageurl}" id="image" class="card-img-top" alt="...">
                     
-                    
-                    <div class="card-body">
-                    <p class="" style="font-size: 25px;"><b>${doc.data().itemname}</b></p>
-                    <div class="d-flex justify-content-between">
-                    <p class="" style="font-size: 16px;">PKR: ${doc.data().itemprice}</p>
-                    </div>
-                    
-                    </div>
+                        <div class="card-body">
+                                <p class="" style="font-size: 25px;"><b>${doc.data().itemname}</b></p>
+                            <div class="d-flex justify-content-between">
+                                <p class="" style="font-size: 16px;">PKR: ${doc.data().itemprice}</p>
+                            </div>
+                        </div>
                     </div>
                     </div>`
                     resItem.innerHTML = html;

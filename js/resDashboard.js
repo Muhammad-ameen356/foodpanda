@@ -108,6 +108,19 @@
 //         });
 // }
 
+const navbar = () => {
+    const shopNameNav = document.getElementById('shopNameNav');
+    auth.onAuthStateChanged((res) => {
+        let docRef = db.collection("resturant").doc(res.uid);
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                const shopname = doc.data().name; namehalf = shopname.substring(0, 14)
+                shopNameNav.innerHTML = `${namehalf}....`;
+            } else { console.log("No such document!"); }
+        }).catch((error) => { console.log("Error getting document:", error); alert(error) });
+    })
+}
+
 
 let loader = document.getElementById('loader');
 
@@ -126,7 +139,7 @@ const pendingtab = () => {
                 else {
                     var orders = [];
                     querySnapshot.forEach((doc) => {
-                        orders.push(`<div>${doc.data().items}</div>` + `<b>Total: ${doc.data().total}</b>` + `<input type="hidden" id="pp${doc.data().orderid}" value="${doc.data().orderid}>" + <div><br></div>` + `<div><button class="btn btn-success no-radius" onclick="accept(${doc.data().orderid})">Accept</button> <button class="btn btn-danger no-radius" onclick="reject(${doc.data().orderid})">Reject</button></div><hr>`);
+                        orders.unshift(`<div>${doc.data().items}</div>` + `<b>Total: ${doc.data().total}</b>` + `<input type="hidden" id="pp${doc.data().orderid}" value="${doc.data().orderid}>" + <div><br></div>` + `<div><button class="btn btn-success no-radius" onclick="accept(${doc.data().orderid})">Accept</button> <button class="btn btn-danger no-radius" onclick="reject(${doc.data().orderid})">Reject</button></div><hr>`);
                     });
                     pending.innerHTML = orders.join(" ");
                     loader.style.display = "none"
@@ -144,7 +157,7 @@ const acceptedtab = () => {
             .onSnapshot((querySnapshot) => {
                 var orders = [];
                 querySnapshot.forEach((doc) => {
-                    orders.push(`<div>${doc.data().items}</div>` + `<b>Total: ${doc.data().total}</b>` + `<input type="hidden" id="pp${doc.data().orderid}" value="${doc.data().orderid}>" + <div><br></div>` + `<div><button class="btn btn-success no-radius" onclick="deliver(${doc.data().orderid})">Deliver</button><hr>`);
+                    orders.unshift(`<div>${doc.data().items}</div>` + `<b>Total: ${doc.data().total}</b>` + `<input type="hidden" id="pp${doc.data().orderid}" value="${doc.data().orderid}>" + <div><br></div>` + `<div><button class="btn btn-success no-radius" onclick="deliver(${doc.data().orderid})">Deliver</button><hr>`);
                 });
                 accepted.innerHTML = orders.join(" ")
             });
@@ -159,7 +172,7 @@ const deliveredtab = () => {
             .onSnapshot((querySnapshot) => {
                 var orders = [];
                 querySnapshot.forEach((doc) => {
-                    orders.push(`<div>${doc.data().items}</div>` + `<b>Total: ${doc.data().total} </b>` + `<input type="hidden" id="pp${doc.data().orderid}" value="${doc.data().orderid}>" + <div><br></div><hr>`);
+                    orders.unshift(`<div>${doc.data().items}</div>` + `<b>Total: ${doc.data().total} </b>` + `<input type="hidden" id="pp${doc.data().orderid}" value="${doc.data().orderid}>" + <div><br></div><hr>`);
                 });
                 console.log(orders);
                 delivered.innerHTML = orders.join(" ")
@@ -175,9 +188,8 @@ const rejectedtab = () => {
             .onSnapshot((querySnapshot) => {
                 var orders = [];
                 querySnapshot.forEach((doc) => {
-                    orders.push(`<div>${doc.data().items}</div>` + `<b>Total: ${doc.data().total} </b><hr>`);
+                    orders.unshift(`<div>${doc.data().items}</div>` + `<b>Total: ${doc.data().total} </b><hr>`);
                 });
-                console.log(orders);
                 rejected.innerHTML = orders.join(" ")
             });
     })

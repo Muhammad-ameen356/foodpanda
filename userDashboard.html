@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Firease -->
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore-compat.js"></script>
@@ -14,19 +14,24 @@
     <!-- Bootstrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <!-- Css Styling -->
-    <link rel="stylesheet" href="./css/navbar.css" />
-    <link rel="stylesheet" href="./css/userhome.css">
+    <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href="./css/loader.css">
-    <!-- Bootstrap V.5.0 -->
+    <link rel="stylesheet" href="./css/userDashboard.css">
+
+    <!-- Bootstrap v.5.0 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-
     <link rel="icon" href="./images/pandaicon.png">
-    <title>Food delivery in Pakistan | Foodpanda</title>
+    <title>User Dashboard</title>
 </head>
 
-<body onload="showRestaurants()">
-    
+<body onload="statusTab(); ontheway();">
+    <div id="loader" style="display: none;">
+        <div class="loader3">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
     <!-- Navbar -->
     <div class="nav">
         <input type="checkbox" id="nav-check">
@@ -44,52 +49,65 @@
         </div>
 
         <div class="nav-links">
-            <a href="">EN</a>
-            <a href="" onclick="logout()">
-                <i class="bi bi-person-circle nav-icon"></i>LOGOUT</a>
-            <a href="./userDashboard.html"><i class="bi bi-cart4 nav-icon"></i></a>
-        </div>
-    </div>
+            <div class="dropdown-nav">
+                <span id="shopNameNav"></span>
+                <i class="bi bi-person-circle nav-icon"></i>
+                <div class="dropdown-content-nav">
+                    <!-- <a href="#" onclick="">My orders</a> -->
+                    <a href="#" onclick="">Profile</a>
+                    <a href="#" onclick="">Help Center</a>
+                    <a href="#" onclick="logout()">Logout</a>
+                </div>
+            </div>
 
-    <div class="nav-bottom">
-        <p class="text-center" style="font-size: 29px;">Popular Restaurants</p>
-        <p class="text-white text-center shadow-remove borderradius-remove add-button">
-            Your Current Location <i class="bi bi-geo-alt" style="font-size: 19px;"></i>
-        </p>
-    </div>
-    <!-- ------------Navbar End----------- -->
-    <div id="loader" style="display: none;">
-        <div class="loader3">
-            <span></span>
-            <span></span>
+            <a href="#">EN</a>
+            <a href="./userhome.html">Home</a>
 
         </div>
     </div>
-    <!-- Show resturant for user -->
-    <!-- <div class="container my-3"> -->
-    <div class="row px-3 pt-4 " id="userResturantShow">
-        <!-- <div class="col-lg-3 col-md-4 col-sm-6 pt-4 d-flex justify-content-center">
-                <div class="card" style="width: 17rem; height: 30 !important;">
-                    <img src="./images/resturant.jpg" class="card-img-top" style="height: 200px;" alt="...">
-                    <div class="card-body p-0 pt-3">
-                        <div class="d-flex justify-content-between margin-remove">
-                            <p class="card-text" style="font-size: 16px;"><b>WF Food HotN Roll</b></p>
-                            <p class="card-text" style="font-size: 12px;"><b><i
-                                        class="bi bi-star-fill text-primary"></i> 4.1</b><span class="text-muted"
-                                    style="font-size: 13px;">/5</span></p>
-                        </div>
-                        <p class="card-text text-muted" style="font-size: 14px;">$$$, beverage, burger, fast foods</p>
-                    </div>
+
+    <!-- Tabs -->
+    <div class="page-content">
+
+        <div class="tabbed">
+            <input type="radio" id="tab21" name="css-tabs2" checked>
+            <input type="radio" id="tab22" name="css-tabs2">
+            <!-- <input type="radio" id="tab23" name="css-tabs2">
+            <input type="radio" id="tab24" name="css-tabs2"> -->
+
+            <ul class="tabs">
+                <li class="tab"><label for="tab21">Order Status</label></li>
+                <li class="tab"><label for="tab22">On the Way</label></li>
+                <!-- <li class="tab"><label for="tab23">Delivered</label></li>
+                <li class="tab"><label for="tab24">Rejected</label></li> -->
+            </ul>
+
+            <div class="tab-content">
+                <div class="" id="orderstatus">
+                </div>
+            </div>
+
+            <div class="tab-content">
+                <div class="" id="deliverd">
+                </div>
+            </div>
+
+            <!-- <div class="tab-content">
+                <div class="" id="delivered">
+                </div>
+            </div>
+
+            <div class="tab-content">
+                <div class="" id="rejected">
                 </div>
             </div> -->
+        </div>
     </div>
-    <!-- </div> -->
 
 
-    <!-- <button onclick="showRestaurants()">Click Kar0</button> -->
 
     <script src="./js/loginSignup.js"></script>
-    <script type="text/javascript" src="./js/userhome.js"></script>
+    <script src="./js//userDashboard.js"></script>
 
     <!-- Bootstrap v.5.0 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

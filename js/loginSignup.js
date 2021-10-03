@@ -66,7 +66,8 @@ const userSignUp = () => {
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log(errorMessage);
-            loader.style.display = "none"
+            loader.style.display = "none";
+            alert(errorMessage);
 
         });
 }
@@ -93,6 +94,7 @@ const setUserInitialData = (user) => {
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
+            alert(error)
         });
 }
 
@@ -116,6 +118,7 @@ const resturantSignUp = () => {
             var errorMessage = error.message;
             console.log(errorMessage);
             loader.style.display = "none";
+            alert(errorMessage);
         });
 }
 
@@ -148,6 +151,7 @@ const setresturantInitialData = (resturant) => {
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
+            alert(error)
         });
 }
 
