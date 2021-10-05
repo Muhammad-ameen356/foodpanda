@@ -104,7 +104,7 @@ a:hover {
 /*  */
 
 .no-radius{
-  border-radius: 4px !important;
+  border-radius: 0px !important;
   margin-top: 10px;
 }
 
@@ -112,3 +112,9 @@ a:hover {
   display: flex;
   justify-content: space-between;
 }
+
+.orderPerDet{
+  color: #da397c;
+  font-size: 20px;
+}
+
