@@ -166,10 +166,28 @@ body {
 .checkout-btn {
   padding: 10px !important;
 }
+
 .checkoutbtn-inner {
   font-size: 14px !important;
   padding: 12px !important;
   border-radius: 0px !important;
+  background-color: #d70f62 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #fff !important;
+}
+
+.checkoutbtn-inner:hover {
+  background-color: #c20c58 !important;
+}
+
+.checkoutbtn-inner:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.fixed-checkout{
+  display: none;
 }
 
 .cartItem{
@@ -201,6 +219,13 @@ body {
     z-index: 1;
   }
   .mainCart {
-    width: 0%;
+    display: none;
+  }
+  .fixed-checkout{
+    position: fixed;
+    bottom: 2px;
+    padding: 0px 10px 0px 10px;
+    z-index: 10;
+    display: block;
   }
 }

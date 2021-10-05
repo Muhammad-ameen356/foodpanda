@@ -62,22 +62,39 @@ const resturantData = () => {
 
 const addcartitem = (itemid) => {
     let html = '';
+    let htmltwo = '';
     cartitem.style.display = "block"
 
     db.collection("items").doc(`${itemid}`)
         .onSnapshot((doc) => {
-            html += `<div id="removeThisItem">
+            html += `<div id="rr${itemid}">
                         <div class="d-f-j-b pt-3" >
                             <div class="cartItemname" id="cartitemnameid">${doc.data().itemname}</div>
                             <div class="cartPrice text-muted">Rs ${doc.data().itemprice}</div>
                         </div>
                         <div class="d-f-j-b pt-2" style="cursor: pointer;">
                             <div class="text-end">Quatity: 1</div> 
-                            <div onclick="removefromCart(${doc.data().itemprice})"><i class="bi bi-trash"></i></div>
+                            <div onclick="removefromCart(${doc.data().itemprice}, ${itemid})"><i class="bi bi-trash"></i></div>
                         </div>
                     </div>`
 
             cartitem.innerHTML += html;
+        });
+
+    db.collection("items").doc(`${itemid}`)
+        .onSnapshot((doc) => {
+            htmltwo += `<div id="rrm${itemid}">
+                        <div class="d-f-j-b pt-3" >
+                            <div class="cartItemname" id="cartitemnameid">${doc.data().itemname}</div>
+                            <div class="cartPrice text-muted">Rs ${doc.data().itemprice}</div>
+                        </div>
+                        <div class="d-f-j-b pt-2" style="cursor: pointer;">
+                            <div class="text-end">Quatity: 1</div> 
+                            <div onclick="removefromCart(${doc.data().itemprice}, ${itemid})"><i class="bi bi-trash"></i></div>
+                        </div>
+                    </div>`
+
+            modalCart.innerHTML += htmltwo;
         });
     disableCheckout();
     let itemforchange = document.getElementById(`w${itemid}`);
@@ -89,11 +106,16 @@ const cart = (itemid) => {
     loader.style.display = "block";
     let subtotalPrice = document.getElementById('subtotalPrice');
     let totalprice = document.getElementById('totalprice');
+    let modalTotalPrice = document.getElementById('modalTotalPrice');
     let subnum = Number(subtotalPrice.textContent);
     let totnum = Number(totalprice.textContent);
+    let modtotNum = Number(modalTotalPrice.textContent);
     let yourcart = document.getElementById('yourcart');
     let yourcartsubtext = document.getElementById('yourcartsubtext');
     let checkoutbtn = document.getElementById('checkoutbtn');
+    let checkoutbtnmodal = document.getElementById('checkoutbtnmodal');
+    let placeorder = document.getElementById('placeorder');
+
 
     let id = localStorage.getItem("resid");
     db.collection("resturant").doc(id).onSnapshot((res) => {
@@ -105,24 +127,33 @@ const cart = (itemid) => {
 
             subtotalPrice.innerHTML = (subnum + itemprice);
             totalprice.innerHTML = (totnum + itemprice);
+            modalTotalPrice.innerHTML = (modtotNum + itemprice)
             loader.style.display = "none"
         });
     })
     checkoutbtn.disabled = false;
+    checkoutbtnmodal.disabled = false;
+    placeorder.disabled = false;
 }
 
 
-const removefromCart = (price) => {
+const removefromCart = (price, itemid) => {
     let subtotalPrice = document.getElementById('subtotalPrice');
     let totalprice = document.getElementById('totalprice');
+    let modalTotalPrice = document.getElementById('modalTotalPrice');
     let subnum = Number(subtotalPrice.textContent);
     let totnum = Number(totalprice.textContent);
+    let modtotNum = Number(modalTotalPrice.textContent);
 
     subtotalPrice.innerHTML = (subnum - price);
-    totalprice.innerHTML = (totnum - price)
+    totalprice.innerHTML = (totnum - price);
+    modalTotalPrice.innerHTML = (modtotNum - price)
 
-    let removeThisItem = document.getElementById('removeThisItem');
-    removeThisItem.remove();
+    let rrm = document.getElementById(`rrm${itemid}`);
+    rrm.remove();
+    let rr = document.getElementById(`rr${itemid}`)
+    rr.remove();
+
     disableCheckout();
 }
 
@@ -130,10 +161,16 @@ const removefromCart = (price) => {
 const disableCheckout = () => {
     let totnum = Number(totalprice.textContent);
     let checkoutbtn = document.getElementById('checkoutbtn');
-    if (totnum == 0) {
+    let checkoutbtnmodal = document.getElementById('checkoutbtnmodal');
+    let placeorder = document.getElementById('placeorder');
+    if (totnum <= 0) {
         checkoutbtn.disabled = true;
-    } else if (totnum !== 0) {
+        checkoutbtnmodal.disabled = true;
+        placeorder.disabled = true;
+    } else if (totnum > 0) {
         checkoutbtn.disabled = false;
+        checkoutbtnmodal.disabled = false;
+        placeorder.disabled = false;
     }
 }
 

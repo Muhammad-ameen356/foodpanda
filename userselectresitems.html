@@ -144,7 +144,7 @@
             <div class="checkout-btn">
                 <button class="btn btn-secondary w-100 checkoutbtn-inner" id="checkoutbtn" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop" onclick="checkOut()">
-                    <b>Place Order</b>
+                    <b>Go To Checkout</b>
                 </button>
             </div>
         </aside>
@@ -176,8 +176,12 @@
         <img  alt="" id="image">
         <button class="btn btn-secondary" onclick="upload()">Upload</button>
     </div> -->
-
-
+    <div class="fixed-checkout w-100">
+        <button class="btn btn-secondary checkoutbtn-inner w-100" id="checkoutbtnmodal" data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop" onclick="checkOut()">
+            <b>Go To CheckOut</b>
+        </button>
+    </div>
     <!--! Modal Box -->
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -190,7 +194,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="addingmemberform" class="container">
-                        
+
                         <div class="form-outline">
                             <label for="userOrderName" class="form-label">Your Name</label>
                             <input type="text" class="form-control shadow-remove borderradius-remove"
@@ -206,7 +210,8 @@
                         <div class="form-outline">
                             <label for="userOrderDeliveradd" class="form-label">Deliver at</label>
                             <input type="text" class="form-control shadow-remove borderradius-remove"
-                                placeholder="Your Complete Address" id="userOrderDeliveradd" aria-describedby="emailHelp">
+                                placeholder="Your Complete Address" id="userOrderDeliveradd"
+                                aria-describedby="emailHelp">
                         </div>
                         <br>
                         <div class="form-outline">
@@ -219,13 +224,27 @@
                             </select>
                         </div>
                         <br>
-                        <span>Total Payment With Delivery Charges</span>
+                        <div class="pt-4">
+                            <div class="cartItem sub-total" id="modalCart">
+                                <!-- <div class="d-f-j-b pt-4">
+                                    <div class="cartItemname">Zinger</div>
+                                    <div class="cart">Rs 200</div>
+                                </div>
+                                <div class="text-end">Quatity: 1</div> -->
+                            </div>
+                        </div>
                         <br>
-                        <b><span id="totalWithDelivery"></span></b>
+                        <div>
+                            <div>Order Total</div>
+                            <b><p>Rs. <span id="modalTotalPrice">0</span></p></b>
+                            <div>With Delivery Charges</div>
+                            <b><span id="totalWithDelivery"></span></b>
+
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <button type="button" id="createteamid" onclick="orderPlace()"
+                    <button type="button" id="placeorder" onclick="orderPlace()"
                         class="btn btn-info text-white borderradius-remove shadow-remove" data-bs-dismiss="modal">
                         Place Order
                     </button>
