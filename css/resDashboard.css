@@ -107,3 +107,8 @@ a:hover {
   border-radius: 4px !important;
   margin-top: 10px;
 }
+
+.cusNamePhone{
+  display: flex;
+  justify-content: space-between;
+}

@@ -139,7 +139,13 @@ const pendingtab = () => {
                 else {
                     var orders = [];
                     querySnapshot.forEach((doc) => {
-                        orders.unshift(`<div>${doc.data().items}</div>` + `<b>Total: ${doc.data().total}</b>` + `<input type="hidden" id="pp${doc.data().orderid}" value="${doc.data().orderid}>" + <div><br></div>` + `<div><button class="btn btn-success no-radius" onclick="accept(${doc.data().orderid})">Accept</button> <button class="btn btn-danger no-radius" onclick="reject(${doc.data().orderid})">Reject</button></div><hr>`);
+                        orders.unshift(`<div>${doc.data().items}</div>` + 
+                        `<b>Total: ${doc.data().total}</b>` +
+                        `<input type="hidden" id="pp${doc.data().orderid}" value="${doc.data().orderid}>" +
+                        <div><br></div>` + 
+                        `<div class="text-center"><h4>Order Person Detail</h4></div>` + 
+                        `<div class="row"><div class="col-md-4"><b>Name:</b> ${doc.data().customerName}</div><div class="col-md-4"><b>Phone #:</b> ${doc.data().customerPhone}</div><div class="col-md-4"><b>Date:</b> ${doc.data().dateandtime}</div></div>` +
+                        `<div><button class="btn btn-success no-radius" onclick="accept(${doc.data().orderid})">Accept</button> <button class="btn btn-danger no-radius" onclick="reject(${doc.data().orderid})">Reject</button></div><hr>`);
                     });
                     pending.innerHTML = orders.join(" ");
                     loader.style.display = "none"
@@ -174,7 +180,7 @@ const deliveredtab = () => {
                 querySnapshot.forEach((doc) => {
                     orders.unshift(`<div>${doc.data().items}</div>` + `<b>Total: ${doc.data().total} </b>` + `<input type="hidden" id="pp${doc.data().orderid}" value="${doc.data().orderid}>" + <div><br></div><hr>`);
                 });
-                console.log(orders);
+                // console.log(orders);
                 delivered.innerHTML = orders.join(" ")
             });
     })
