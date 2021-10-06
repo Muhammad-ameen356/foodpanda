@@ -29,20 +29,19 @@ const pendingtab = () => {
                 else {
                     var orders = [];
                     querySnapshot.forEach((doc) => {
-                        orders.unshift(`<div>${doc.data().items}</div>` + 
-                        `<b>Total: ${doc.data().total}</b>` +
-                        `<input type="hidden" id="pp${doc.data().orderid}" value="${doc.data().orderid}>" +
-                        <div><br></div>` + 
-                        `<div class="pt-2 orderPerDet"><u><b class="">Order Person Detail</b></u></div>` + 
-                        `<div class="row pt-2"><div class="col-md-4"><b>Name:</b> ${doc.data().customerName}</div><div class="col-md-4"><b>Phone #:</b> ${doc.data().customerPhone}</div><div class="col-md-4"><b>Date:</b> ${doc.data().dateandtime}</div></div>` +
-                        `<div class="pt-1"><b>Address:</b> ${doc.data().customerAddress}</div>` +
-                        `<div><button class="btn btn-success no-radius" onclick="accept(${doc.data().orderid})">Accept</button> <button class="btn btn-danger no-radius" onclick="reject(${doc.data().orderid})">Reject</button></div><hr>`);
+                        orders.unshift(`<div>${doc.data().items}</div>` +
+                            `<b>Total: ${doc.data().total}</b>` +
+                            `<input type="hidden" id="pp${doc.data().orderid}" value="${doc.data().orderid}>" +
+                        <div><br></div>` +
+                            `<div class="pt-2 orderPerDet"><u><b class="">Order Person Detail</b></u></div>` +
+                            `<div class="row pt-2"><div class="col-md-4"><b>Name:</b> ${doc.data().customerName}</div><div class="col-md-4"><b>Phone #:</b> ${doc.data().customerPhone}</div><div class="col-md-4"><b>Date:</b> ${doc.data().dateandtime}</div></div>` +
+                            `<div class="pt-1"><b>Address:</b> ${doc.data().customerAddress}</div>` +
+                            `<div><button class="btn btn-success no-radius" onclick="accept(${doc.data().orderid})">Accept</button> <button class="btn btn-danger no-radius" onclick="reject(${doc.data().orderid})">Reject</button></div><hr>`);
                     });
                     pending.innerHTML = orders.join(" ");
                     loader.style.display = "none"
                 }
             });
-
     })
 }
 
@@ -55,13 +54,13 @@ const acceptedtab = () => {
                 var orders = [];
                 querySnapshot.forEach((doc) => {
                     orders.unshift(`<div>${doc.data().items}</div>` +
-                     `<b>Total: ${doc.data().total}</b>` +
-                    `<input type="hidden" id="pp${doc.data().orderid}" value="${doc.data().orderid}>" +
-                     <div><br></div>` +
-                    `<div class="pt-2 orderPerDet"><u><b class="">Order Person Detail</b></u></div>` + 
-                    `<div class="row pt-2"><div class="col-md-4"><b>Name:</b> ${doc.data().customerName}</div><div class="col-md-4"><b>Phone #:</b> ${doc.data().customerPhone}</div><div class="col-md-4"><b>Date:</b> ${doc.data().dateandtime}</div></div>` +
-                    `<div class="pt-1"><b>Address:</b> ${doc.data().customerAddress}</div>` +
-                    `<div><button class="btn btn-success no-radius" onclick="deliver(${doc.data().orderid})">Deliver</button><hr>`);
+                        `<b>Total: ${doc.data().total}</b>` +
+                        `<input type="hidden" id="pp${doc.data().orderid}" value="${doc.data().orderid}>" +
+                        <div><br></div>` +
+                        `<div class="pt-2 orderPerDet"><u><b class="">Order Person Detail</b></u></div>` +
+                        `<div class="row pt-2"><div class="col-md-4"><b>Name:</b> ${doc.data().customerName}</div><div class="col-md-4"><b>Phone #:</b> ${doc.data().customerPhone}</div><div class="col-md-4"><b>Date:</b> ${doc.data().dateandtime}</div></div>` +
+                        `<div class="pt-1"><b>Address:</b> ${doc.data().customerAddress}</div>` +
+                        `<div><button class="btn btn-success no-radius" onclick="deliver(${doc.data().orderid})">Deliver</button><hr>`);
                 });
                 accepted.innerHTML = orders.join(" ")
             });
@@ -77,12 +76,12 @@ const deliveredtab = () => {
                 var orders = [];
                 querySnapshot.forEach((doc) => {
                     orders.unshift(`<div>${doc.data().items}</div>` +
-                    `<b>Total: ${doc.data().total} </b>` + 
-                    `<input type="hidden" id="pp${doc.data().orderid}" value="${doc.data().orderid}>" + 
+                        `<b>Total: ${doc.data().total} </b>` +
+                        `<input type="hidden" id="pp${doc.data().orderid}" value="${doc.data().orderid}>" + 
                     <div><br></div>`+
-                    `<div class="pt-2 orderPerDet"><u><b class="">Order Person Detail</b></u></div>` + 
-                    `<div class="row pt-2"><div class="col-md-4"><b>Name:</b> ${doc.data().customerName}</div><div class="col-md-4"><b>Phone #:</b> ${doc.data().customerPhone}</div><div class="col-md-4"><b>Date:</b> ${doc.data().dateandtime}</div></div>` +
-                    `<div class="pt-1"><b>Address:</b> ${doc.data().customerAddress}</div><hr>`);
+                        `<div class="pt-2 orderPerDet"><u><b class="">Order Person Detail</b></u></div>` +
+                        `<div class="row pt-2"><div class="col-md-4"><b>Name:</b> ${doc.data().customerName}</div><div class="col-md-4"><b>Phone #:</b> ${doc.data().customerPhone}</div><div class="col-md-4"><b>Date:</b> ${doc.data().dateandtime}</div></div>` +
+                        `<div class="pt-1"><b>Address:</b> ${doc.data().customerAddress}</div><hr>`);
                 });
                 // console.log(orders);
                 delivered.innerHTML = orders.join(" ")
@@ -98,11 +97,11 @@ const rejectedtab = () => {
             .onSnapshot((querySnapshot) => {
                 var orders = [];
                 querySnapshot.forEach((doc) => {
-                    orders.unshift(`<div>${doc.data().items}</div>` + 
-                    `<b>Total: ${doc.data().total} </b>` + 
-                    `<div class="pt-2 orderPerDet"><u><b class="">Order Person Detail</b></u></div>` + 
-                    `<div class="row pt-2"><div class="col-md-4"><b>Name:</b> ${doc.data().customerName}</div><div class="col-md-4"><b>Phone #:</b> ${doc.data().customerPhone}</div><div class="col-md-4"><b>Date:</b> ${doc.data().dateandtime}</div></div>` +
-                    `<div class="pt-1"><b>Address:</b> ${doc.data().customerAddress}</div><hr>`);
+                    orders.unshift(`<div>${doc.data().items}</div>` +
+                        `<b>Total: ${doc.data().total} </b>` +
+                        `<div class="pt-2 orderPerDet"><u><b class="">Order Person Detail</b></u></div>` +
+                        `<div class="row pt-2"><div class="col-md-4"><b>Name:</b> ${doc.data().customerName}</div><div class="col-md-4"><b>Phone #:</b> ${doc.data().customerPhone}</div><div class="col-md-4"><b>Date:</b> ${doc.data().dateandtime}</div></div>` +
+                        `<div class="pt-1"><b>Address:</b> ${doc.data().customerAddress}</div><hr>`);
                 });
                 rejected.innerHTML = orders.join(" ")
             });
