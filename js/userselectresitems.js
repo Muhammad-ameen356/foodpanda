@@ -204,7 +204,8 @@ const orderPlace = () => {
     console.log(totCharges);
 
     let date = new Date();
-    let placeordertime = (date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " Time " + date.getHours() + " : " + date.getMinutes());
+    let placeorderdate = (date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear());
+    let placeordertime = (date.getHours() + " : " + date.getMinutes());
 
     if ((userOrderName && userOrderNum && userOrderDeliveradd && orderPayment).length !== 0) {
         console.log("not Empty");
@@ -217,7 +218,8 @@ const orderPlace = () => {
                 customerPayment: orderPayment,
                 total: totCharges,
                 items: cartitem.innerText,
-                dateandtime: placeordertime,
+                date: placeorderdate,
+                time: placeordertime,
                 resturantid: id,
                 orderid: time,
                 watch: "Pending",
@@ -244,7 +246,45 @@ const orderPlace = () => {
 }
 
 
+// PHONE Number Authentication
 
+// function render() {
+
+//     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+//     recaptchaVerifier.render()
+// }
+
+// function phoneauth() {
+//     let userOrderNum = document.getElementById('userOrderNum').value;
+//     console.log(userOrderNum);
+//     auth.signInWithPhoneNumber(userOrderNum, window.recaptchaVerifier)
+//         .then((confirmationResult) => {
+//             // SMS sent. Prompt user to type the code from the message, then sign the
+//             // user in with confirmationResult.confirm(code).
+//             window.confirmationResult = confirmationResult;
+//             console.log(confirmationResult);
+//             // ...
+//         }).catch((error) => {
+//             // Error; SMS not sent
+//             console.log(error);
+//             // ...
+//         });
+// }
+
+// function verify() {
+//     let vericode = document.getElementById('vericode').value;
+//     console.log(vericode);
+//     confirmationResult.confirm(vericode).then((result) => {
+//         // User signed in successfully.
+//         const user = result.user;
+//         console.log(user);
+//         // ...
+//     }).catch((error) => {
+//         console.log(error);
+//         // User couldn't sign in (bad verification code?)
+//         // ...
+//     });
+// }
 
 ////! Storage
 // function upload() {

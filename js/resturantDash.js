@@ -120,6 +120,19 @@ const deleteItem = (id, imagename) => {
 
 const editItem = (id) => {
     console.log(id);
+    // var editItem = db.collection("orders").doc(`${id}`);
+
+    // // Set the "capital" field of the city 'DC'
+    // return washingtonRef.update({
+    //     capital: true
+    // })
+    //     .then(() => {
+    //         console.log("Document successfully updated!");
+    //     })
+    //     .catch((error) => {
+    //         // The document probably doesn't exist.
+    //         console.error("Error updating document: ", error);
+    //     });
 }
 
 //? for show and hide input in onchange
