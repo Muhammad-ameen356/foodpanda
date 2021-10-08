@@ -185,7 +185,37 @@ const checkOut = () => {
     totalWithDelivery.innerHTML = `Total: ${totCharges}`;
 }
 
-const orderPlace = () => {
+////! Geo Location
+
+const getCord = () => {
+    console.log("ameen");
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+
+const showPosition = (position) => {
+    console.log(position);
+    let lat = position.coords.latitude,
+        long = position.coords.longitude;
+    // coords = lat + ', ' + long;
+    orderPlace(lat, long);
+}
+
+const showError = (error) => {
+    console.log(error);
+    if (error.code == error.PERMISSION_DENIED) {
+        console.log(error.message);
+        swal("Order Not Place", "Please allow Location to continue", "error");
+    } else if (error.code == error.POSITION_UNAVAILABLE) {
+        console.log(error.message);
+    }
+}
+////! --------------------------------
+
+const orderPlace = (lat, long) => {
     loader.style.display = "block"
     let totalprice = document.getElementById('totalprice');
     let subtotalPrice = document.getElementById('subtotalPrice');
@@ -224,6 +254,8 @@ const orderPlace = () => {
                 orderid: time,
                 watch: "Pending",
                 userid: user.uid,
+                latitude: lat,
+                longitude: long,
             }).then(() => {
                 console.log("Document successfully written!");
                 totalprice.innerHTML = 0; subtotalPrice.innerHTML = 0;
