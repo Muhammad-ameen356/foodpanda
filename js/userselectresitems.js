@@ -1,4 +1,5 @@
 let cartitem = document.getElementById('cartitem');
+let modalCart = document.getElementById('modalCart');
 let loader = document.getElementById('loader');
 let id = localStorage.getItem("resid");
 
@@ -205,12 +206,11 @@ const showPosition = (position) => {
 }
 
 const showError = (error) => {
-    console.log(error);
     if (error.code == error.PERMISSION_DENIED) {
         console.log(error.message);
         swal("Order Not Place", "Please allow Location to continue", "error");
     } else if (error.code == error.POSITION_UNAVAILABLE) {
-        console.log(error.message);
+        swal("Order Not Place", "Position Unavailable", "error");
     }
 }
 ////! --------------------------------
@@ -261,6 +261,9 @@ const orderPlace = (lat, long) => {
                 totalprice.innerHTML = 0; subtotalPrice.innerHTML = 0;
                 while (cartitem.hasChildNodes()) {
                     cartitem.removeChild(cartitem.firstChild);
+                }
+                while (modalCart.hasChildNodes()) {
+                    modalCart.removeChild(modalCart.firstChild);
                 }
                 loader.style.display = "none";
                 disableCheckout();
