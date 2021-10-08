@@ -41,15 +41,15 @@ a:hover {
 
 /* Scroll bar horizontal */
 .tabs::-webkit-scrollbar {
-	height: 3px;
+  height: 3px;
 }
 
 .tabs::-webkit-scrollbar-track {
-	background: #eeeeee; 
+  background: #eeeeee;
 }
 
 .tabs::-webkit-scrollbar-thumb {
-    background: rgb(119, 119, 119); 
+  background: rgb(119, 119, 119);
 }
 /* -------------------- */
 
@@ -100,21 +100,42 @@ a:hover {
   display: block;
 }
 
-
 /*  */
 
-.no-radius{
+.no-radius {
   border-radius: 0px !important;
   margin-top: 10px;
 }
 
-.cusNamePhone{
+.cusNamePhone {
   display: flex;
   justify-content: space-between;
 }
 
-.orderPerDet{
+.orderPerDet {
   color: #da397c;
   font-size: 20px;
 }
 
+.iframeClass {
+  background-image: url("../images/location-back.png");
+  background-repeat: no-repeat;
+  background-size: 400px 250px;
+  width: 400px;
+  height: 250px;
+  transition: all 0.2s;
+}
+
+@media screen and (max-width: 900px) {
+  .iframeClass {
+    width: 350px;
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .iframeClass {
+    width: 300px;
+    height: 200px;
+  }
+}
