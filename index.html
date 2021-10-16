@@ -56,7 +56,7 @@
 
                                             <!-- <div class="row"> -->
                                             <div class="form-outline mb-4">
-                                                <input type="email" id="signUserName"
+                                                <input type="email" id="signUserName" oninput="validation()"
                                                     class="form-control rounded-0 form-control-lg" autocapitalize="none"
                                                     autocorrect="off" required />
                                                 <label class="form-label" for="signUserName">Username</label>
@@ -71,12 +71,12 @@
                                             </div>
 
                                             <div class="form-outline mb-4">
-                                                <input type="email" id="signUserEmail"
+                                                <input type="email" id="signUserEmail" oninput="validation()"
                                                     class="form-control rounded-0 form-control-lg" required />
                                                 <label class="form-label" for="signUserEmail">Email ID</label>
                                             </div>
                                             <div class="form-outline mb-4">
-                                                <input type="number" id="signUserPhone"
+                                                <input type="number" id="signUserPhone" oninput="validation()"
                                                     class="form-control rounded-0 form-control-lg" required />
                                                 <label class="form-label" for="signUserPhone">Phone Number</label>
                                             </div>
@@ -84,11 +84,11 @@
                                                 <!-- <input type="text" id="signUserCountry"
                                                     class="form-control rounded-0 form-control-lg" required />
                                                 <label class="form-label" for="signUserCountry">Country</label> -->
-                                                <select id="signUserCountry"
+                                                <select id="signUserCountry" oninput="validation()"
                                                     class="form-select shadow-remove form-select-lg borderradius-remove"
                                                     aria-label="Default select example" style="font-size: 16px;"
                                                     required>
-                                                    <option value="Not selected" selected>Not Selected</option>
+                                                    <option value="" selected>Not Selected</option>
                                                     <option value="Pakistan">Pakistan</option>
                                                 </select>
                                                 <label for="signUserCountry" class="form-label">Country</label>
@@ -98,11 +98,11 @@
                                                     class="form-control rounded-0 form-control-lg" required />
                                                 <label class="form-label" for="signUserCity">City</label> -->
 
-                                                <select id="signUserCity"
+                                                <select id="signUserCity" oninput="validation()"
                                                     class="form-select shadow-remove form-select-lg borderradius-remove"
                                                     aria-label="Default select example" style="font-size: 16px;"
                                                     required>
-                                                    <option value="Not selected" selected>Not Selected</option>
+                                                    <option value="" selected>Not Selected</option>
                                                     <option value="Karachi">Karachi</option>
                                                     <option value="Lahore">Lahore</option>
                                                     <option value="Faisalabad">Faisalabad</option>
@@ -130,7 +130,7 @@
                                             </div>
 
                                             <div class="form-outline mb-1">
-                                                <input type="password" id="signUserPass"
+                                                <input type="password" id="signUserPass" oninput="validation()"
                                                     class="form-control rounded-0 form-control-lg" required />
                                                 <label class="form-label" for="signUserPass">Password</label>
                                             </div>
@@ -151,9 +151,9 @@
 
 
                                             <div class="pt-3 ">
-                                                <button type="button" onclick="userSignUp()"
+                                                <button type="button" onclick="userSignUp()" id="userSignupButton"
                                                     class="btn btn-primary shadow-remove rounded-0 text-light button-style">
-                                                    Create Account (user)
+                                                    Create Account
                                                 </button>
                                             </div>
                                         </div>

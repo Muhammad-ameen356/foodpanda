@@ -47,6 +47,26 @@ function showloginpassword() {
     }
 }
 
+
+const validation = ()=>{
+    let signUserName = document.getElementById('signUserName').value;
+    let signUserPhone = document.getElementById('signUserPhone').value;
+    let signUserCountry = document.getElementById('signUserCountry').value;
+    let signUserCity = document.getElementById('signUserCity').value;
+    let email = document.getElementById('signUserEmail').value;
+    let pass = document.getElementById('signUserPass').value;
+    let userSignupButton = document.getElementById('userSignupButton');
+    
+    if((signUserName && signUserPhone && signUserCountry && signUserCity && email && pass).length === 0){
+        console.log("khali he");
+        userSignupButton.disabled = true;
+    } else{
+        console.log("bhara hua he");
+        userSignupButton.disabled = false;
+    }
+}
+validation();
+
 // SignUp As User
 const userSignUp = () => {
     let loader = document.getElementById('loader');
