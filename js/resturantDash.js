@@ -3,14 +3,14 @@
 // const auth = firebaseApp.auth();
 // const db = firebaseApp.firestore();
 
-auth.onAuthStateChanged((user) => {
-    if (user) {
-        console.log(user);
-        // console.log(user.uid);
-    } else {
-        console.log("User Logged Out");
-    }
-});
+// auth.onAuthStateChanged((user) => {
+//     if (user) {
+//         console.log(user);
+//         // console.log(user.uid);
+//     } else {
+//         console.log("User Logged Out");
+//     }
+// });
 
 const addItem = () => {
     loader.style.display = "block"

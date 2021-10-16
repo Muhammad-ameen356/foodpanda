@@ -102,24 +102,31 @@ const setUserInitialData = (user) => {
 const resturantSignUp = () => {
     let loader = document.getElementById('loader');
 
-    loader.style.display = "block"
+    loader.style.display = "block";
     let signupResEmail = document.getElementById('signupResEmail').value;
     let signupResPassword = document.getElementById('signupResPassword').value;
 
-    auth.createUserWithEmailAndPassword(signupResEmail, signupResPassword)
-        .then((userCredential) => {
-            var resturant = userCredential.user;
-            console.log(resturant);
-            setresturantInitialData(resturant);
-            loader.style.display = "none"
-        })
-        .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log(errorMessage);
-            loader.style.display = "none";
-            alert(errorMessage);
-        });
+    let file = document.getElementById('MainResImage').files[0];
+
+    if (file !== undefined) {
+        auth.createUserWithEmailAndPassword(signupResEmail, signupResPassword)
+            .then((userCredential) => {
+                var resturant = userCredential.user;
+                console.log(resturant);
+                setresturantInitialData(resturant);
+                loader.style.display = "none"
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorMessage);
+                loader.style.display = "none";
+                alert(errorMessage);
+            });
+    } else {
+        loader.style.display = "none";
+        swal("Image Required", "Please Upload Your Resturant Image to continue", "warning");
+    }
 }
 
 const setresturantInitialData = (resturant) => {
@@ -143,7 +150,7 @@ const setresturantInitialData = (resturant) => {
         address: "",
         category: "",
         phonenumber: "",
-        deliverycharges: "",
+        deliverycharges: "0",
     })
         .then(() => {
             console.log("Document successfully written!");
@@ -223,4 +230,42 @@ const logout = () => {
         console.log(error);
         loader.style.display = "none"
     });
+}
+
+
+
+
+// Image upload
+
+const uploadImage = () => {
+    loader.style.display = "block";
+    auth.onAuthStateChanged((res) => {
+        const ref = storage.ref('resturantProfile');
+        let file = document.getElementById('MainResImage').files[0];
+        const metadata = {
+            contentType: file.type
+        }
+        const task = ref.child(res.uid).put(file, metadata);
+        task.then(snapshot => snapshot.ref.getDownloadURL())
+            .then(url => {
+                uploadImageFirestore(url, res)
+                console.log(url);
+                loader.style.display = "none";
+
+            })
+            .catch((err) => { console.log(err); })
+    })
+}
+
+const uploadImageFirestore = (url, res) => {
+    var resRef = db.collection("resturant").doc(res.uid);
+    resRef.update({
+        imageurl: url
+    })
+        .then(() => {
+            console.log("Document successfully updated!");
+        })
+        .catch((error) => {
+            console.error("Error updating document: ", error);
+        });
 }

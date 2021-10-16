@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 body {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif !important;
+  font-family: 'Open Sans', sans-serif;
+  transition: all .2s cubic-bezier(.25,.46,.45,.94);
 }
 
 .background {
@@ -17,6 +17,34 @@ body {
     background: rgba(255, 166, 0, 0.1) !important;
 }
 
+.bg-transparent-user{
+  background: rgba(255, 255, 255, 0.912) !important;
+
+}
+
+.button-style{
+  width: 100% !important;
+  background: #d70f62 !important;
+  border: #d70f62;
+  height: 46px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: all .2s cubic-bezier(.25,.46,.45,.94);
+}
+.button-style:hover{
+  background: #c90e5c !important;
+  border: #d70f62;
+}
+
+.link-style{
+  color: #d70f62 !important;
+}
+
+.link-style:hover{
+  color: #c90e5c;
+}
 
 
 /* for removing bootstrap border on focous */

@@ -93,7 +93,7 @@ const getResName = () => {
             modalInp.value = doc.data().name;
         });
     })
-    updateNamebtn.style.display = "block"; updateAddbtn.style.display = "none"; updatePhonebtn.style.display = "none"; addDealbtn.style.display = "none"; dealoption.style.display = "none"; dealnumber.style.display = "none"; addDelvChargbtn.style.display = "none"
+    modalInp.disabled = false; updateNamebtn.style.display = "block"; updateAddbtn.style.display = "none"; updatePhonebtn.style.display = "none"; addDealbtn.style.display = "none"; dealoption.style.display = "none"; dealnumber.style.display = "none"; addDelvChargbtn.style.display = "none"
 }
 
 const getResAdress = () => {
@@ -104,7 +104,7 @@ const getResAdress = () => {
         });
     })
 
-    updateNamebtn.style.display = "none"; updateAddbtn.style.display = "block"; updatePhonebtn.style.display = "none"; addDealbtn.style.display = "none"; dealoption.style.display = "none"; dealnumber.style.display = "none"; addDelvChargbtn.style.display = "none"
+    modalInp.disabled = false; updateNamebtn.style.display = "none"; updateAddbtn.style.display = "block"; updatePhonebtn.style.display = "none"; addDealbtn.style.display = "none"; dealoption.style.display = "none"; dealnumber.style.display = "none"; addDelvChargbtn.style.display = "none"
 }
 
 const getResPhone = () => {
@@ -115,7 +115,7 @@ const getResPhone = () => {
         });
     })
 
-    updateNamebtn.style.display = "none"; updateAddbtn.style.display = "none"; updatePhonebtn.style.display = "block"; addDealbtn.style.display = "none"; dealoption.style.display = "none"; dealnumber.style.display = "none"; addDelvChargbtn.style.display = "none"
+    modalInp.disabled = false; updateNamebtn.style.display = "none"; updateAddbtn.style.display = "none"; updatePhonebtn.style.display = "block"; addDealbtn.style.display = "none"; dealoption.style.display = "none"; dealnumber.style.display = "none"; addDelvChargbtn.style.display = "none"
 }
 
 const getResDeal = () => {
@@ -125,7 +125,7 @@ const getResDeal = () => {
             modalInp.value = doc.data().deal;
         });
     })
-    updateNamebtn.style.display = "none"; updateAddbtn.style.display = "none"; updatePhonebtn.style.display = "none"; addDealbtn.style.display = "block"; dealoption.style.display = "block"; dealnumber.style.display = "block"; addDelvChargbtn.style.display = "none"
+    modalInp.disabled = true; updateNamebtn.style.display = "none"; updateAddbtn.style.display = "none"; updatePhonebtn.style.display = "none"; addDealbtn.style.display = "block"; dealoption.style.display = "block"; dealnumber.style.display = "block"; addDelvChargbtn.style.display = "none"
 }
 
 const getResDelvCharg = () => {
@@ -136,7 +136,7 @@ const getResDelvCharg = () => {
             modalInp.value = doc.data().deliverycharges;
         });
     })
-    updateNamebtn.style.display = "none"; updateAddbtn.style.display = "none"; updatePhonebtn.style.display = "none"; addDealbtn.style.display = "none"; dealoption.style.display = "none"; dealnumber.style.display = "none"; addDelvChargbtn.style.display = "block"
+    modalInp.disabled = false; updateNamebtn.style.display = "none"; updateAddbtn.style.display = "none"; updatePhonebtn.style.display = "none"; addDealbtn.style.display = "none"; dealoption.style.display = "none"; dealnumber.style.display = "none"; addDelvChargbtn.style.display = "block"
 }
 
 // Update Buttons
