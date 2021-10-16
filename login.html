@@ -42,7 +42,8 @@
                                 </div>
                                 <div class="col-xl-6 bg-transparent-user">
                                     <div class="card-body p-md-5 text-black">
-                                        <h1 class="mb-5 text-capitalize d-flex justify-content-center text-muted fw-bold">
+                                        <h1
+                                            class="mb-5 text-capitalize d-flex justify-content-center text-muted fw-bold">
                                             <img width="300px" src="./images/foodpanda-c.png" alt="">
                                         </h1>
                                         <h3 class="fw-bold">Welcome back!</h3>
@@ -60,7 +61,10 @@
                                         <div class="form-outline mb-1">
                                             <input type="password" id="loginpassword" oninput="validationLogin()"
                                                 class="form-control rounded-0 form-control-lg" required />
-                                            <label class="form-label" for="loginpassword">Password</label>
+                                            <div class="d-flex justify-content-between">
+                                                <label class="form-label" for="loginpassword">Password</label>
+                                                <a class="link-style" href="./forgetpassword.html">Forget Password</a>
+                                            </div>
                                         </div>
                                         <div class="form-check form-switch">
                                             <input class="form-check-input shadow-remove" type="checkbox"
@@ -71,6 +75,7 @@
                                         <div id="emailHelp" class="form-text mb-4 text-center pt-4">
                                             Dont have an account <a class="link-style" href="index.html">Signup here</a>
                                         </div>
+
 
                                         <div class="pt-3">
                                             <button type="button" onclick="login()" id="loginBtn"

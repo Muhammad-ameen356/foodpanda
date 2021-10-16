@@ -40,6 +40,7 @@ body {
 
 .link-style{
   color: #d70f62 !important;
+  text-decoration: none;
 }
 
 .link-style:hover{

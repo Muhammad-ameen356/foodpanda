@@ -83,11 +83,21 @@ const validationLogin = () => {
     let loginnameoremail = document.getElementById('loginnameoremail').value;
     let loginpassword = document.getElementById('loginpassword').value;
     let loginBtn = document.getElementById('loginBtn');
-
     if ((loginnameoremail && loginpassword).length === 0) {
         loginBtn.disabled = true;
     } else {
         loginBtn.disabled = false;
+    }
+}
+
+const validationForget = () => {
+    let forgetInput = document.getElementById('forgetInput').value;
+    let sendForgetlinkBtn = document.getElementById('sendForgetlinkBtn');
+
+    if (forgetInput.length === 0) {
+        sendForgetlinkBtn.disabled = true;
+    } else {
+        sendForgetlinkBtn.disabled = false;
     }
 }
 
@@ -104,6 +114,7 @@ const userSignUp = () => {
             var user = userCredential.user;
             console.log(user);
             setUserInitialData(user);
+            sendEmailVerification();
         })
         .catch((error) => {
             var errorCode = error.code;
@@ -156,6 +167,7 @@ const resturantSignUp = () => {
             var resturant = userCredential.user;
             console.log(resturant);
             setresturantInitialData(resturant);
+            sendEmailVerification();
         })
         .catch((error) => {
             var errorCode = error.code;
@@ -205,6 +217,13 @@ const setresturantInitialData = (resturant) => {
         });
 }
 
+function sendEmailVerification() {
+    auth.currentUser.sendEmailVerification()
+        .then(() => {
+            console.log("send");
+        });
+}
+
 const login = () => {
     let loginnameoremail = document.getElementById('loginnameoremail').value;
     let loginpassword = document.getElementById('loginpassword').value;
@@ -226,13 +245,20 @@ const login = () => {
 }
 
 const authStateListener = () => {
+    let loader = document.getElementById('loader');
+
     auth.onAuthStateChanged((user) => {
-        if (user) {
-            var uid = user.displayName;
-            console.log(user.uid);
-            typeCheck(user);
+        if (user.emailVerified === true) {
+            if (user) {
+                var uid = user.displayName;
+                console.log(user.emailVerified);
+                typeCheck(user);
+            } else {
+                console.log("no user");
+            }
         } else {
-            console.log("no user");
+            loader.style.display = "none"
+            swal("Please verify your email address, Go on your given email and click on the given link")
         }
     });
 }
@@ -275,9 +301,32 @@ const logout = () => {
     });
 }
 
+const forgetpassword = () => {
+    let loader = document.getElementById('loader');
+    loader.style.display = "block";
+
+    const email = document.getElementById('forgetInput').value;
+    auth.sendPasswordResetEmail(email)
+        .then(() => {
+            console.log("Password reset email sent!");
+            // window.location.href = "./login.html"
+            loader.style.display = "none";
+            swal("Password reset email sent!");
+            document.getElementById('forgetInput').value = "";
+        })
+        .catch((error) => {
+            loader.style.display = "none";
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorMessage);
+            swal(errorMessage)
+        });
+}
+
 // Image upload
 
 const uploadImageSignup = (res) => {
+    let loader = document.getElementById('loader');
     loader.style.display = "block";
     const ref = storage.ref('resturantProfile');
     let file = document.getElementById('MainResImage').files[0];
