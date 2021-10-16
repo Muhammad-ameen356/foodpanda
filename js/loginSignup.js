@@ -58,14 +58,26 @@ const validation = ()=>{
     let userSignupButton = document.getElementById('userSignupButton');
     
     if((signUserName && signUserPhone && signUserCountry && signUserCity && email && pass).length === 0){
-        console.log("khali he");
         userSignupButton.disabled = true;
     } else{
-        console.log("bhara hua he");
         userSignupButton.disabled = false;
     }
 }
-validation();
+
+const resSignupValidation = ()=>{
+    let signupResName = document.getElementById('signupResName').value;
+    let signupResEmail = document.getElementById('signupResEmail').value;
+    let signupRescountry = document.getElementById('signupRescountry').value;
+    let signuResCity = document.getElementById('signuResCity').value;
+    let signupResPassword = document.getElementById('signupResPassword').value;
+    let file = document.getElementById('MainResImage').files[0];
+    let resSignupButton = document.getElementById('resSignupButton');
+    if((signupResName && signupResEmail && signupRescountry && signuResCity && signupResPassword).length === 0 || (file === undefined)){
+        resSignupButton.disabled = true;
+    } else{
+        resSignupButton.disabled = false;
+    }
+}
 
 // SignUp As User
 const userSignUp = () => {
@@ -80,19 +92,19 @@ const userSignUp = () => {
             var user = userCredential.user;
             console.log(user);
             setUserInitialData(user);
-            loader.style.display = "none"
         })
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log(errorMessage);
             loader.style.display = "none";
-            alert(errorMessage);
-
+            swal(errorMessage);
         });
 }
 
 const setUserInitialData = (user) => {
+    let loader = document.getElementById('loader');
+
     let signUserName = document.getElementById('signUserName').value;
     let signUserPhone = document.getElementById('signUserPhone').value;
     let signUserCountry = document.getElementById('signUserCountry').value;
@@ -111,6 +123,7 @@ const setUserInitialData = (user) => {
         .then(() => {
             console.log("Document successfully written!");
             window.location.href = "./login.html";
+            loader.style.display = "none"
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
@@ -126,30 +139,24 @@ const resturantSignUp = () => {
     let signupResEmail = document.getElementById('signupResEmail').value;
     let signupResPassword = document.getElementById('signupResPassword').value;
 
-    let file = document.getElementById('MainResImage').files[0];
-
-    if (file !== undefined) {
         auth.createUserWithEmailAndPassword(signupResEmail, signupResPassword)
             .then((userCredential) => {
                 var resturant = userCredential.user;
                 console.log(resturant);
                 setresturantInitialData(resturant);
-                loader.style.display = "none"
             })
             .catch((error) => {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorMessage);
                 loader.style.display = "none";
-                alert(errorMessage);
+                swal(errorMessage);
             });
-    } else {
-        loader.style.display = "none";
-        swal("Image Required", "Please Upload Your Resturant Image to continue", "warning");
-    }
 }
 
 const setresturantInitialData = (resturant) => {
+    let loader = document.getElementById('loader');
+
     let signupResName = document.getElementById('signupResName').value;
     let signupRescountry = document.getElementById('signupRescountry').value;
     let signuResCity = document.getElementById('signuResCity').value;
@@ -174,11 +181,15 @@ const setresturantInitialData = (resturant) => {
     })
         .then(() => {
             console.log("Document successfully written!");
+            uploadImageSignup(resturant);
             window.location.href = "./login.html";
+            loader.style.display = "none"
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
-            alert(error)
+            loader.style.display = "none";
+            swal(error)
+
         });
 }
 
@@ -193,12 +204,12 @@ const login = () => {
             var user = userCredential.user;
             // console.log(user.uid);
             authStateListener();
-
         })
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
-            alert(errorMessage);
+            loader.style.display = "none";
+            swal(errorMessage);
         });
 }
 
@@ -252,14 +263,10 @@ const logout = () => {
     });
 }
 
-
-
-
 // Image upload
 
-const uploadImage = () => {
+const uploadImageSignup = (res) => {
     loader.style.display = "block";
-    auth.onAuthStateChanged((res) => {
         const ref = storage.ref('resturantProfile');
         let file = document.getElementById('MainResImage').files[0];
         const metadata = {
@@ -271,10 +278,8 @@ const uploadImage = () => {
                 uploadImageFirestore(url, res)
                 console.log(url);
                 loader.style.display = "none";
-
             })
             .catch((err) => { console.log(err); })
-    })
 }
 
 const uploadImageFirestore = (url, res) => {

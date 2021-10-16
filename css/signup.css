@@ -25,17 +25,17 @@ body {
 .button-style{
   width: 100% !important;
   background: #d70f62 !important;
-  border: #d70f62;
+  border: #d70f62 !important;
   height: 46px;
   font-size: 14px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 700 !important;
   transition: all .2s cubic-bezier(.25,.46,.45,.94);
 }
 .button-style:hover{
   background: #c90e5c !important;
-  border: #d70f62;
+  border: #d70f62 !important;
 }
 
 .link-style{

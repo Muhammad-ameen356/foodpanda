@@ -5,7 +5,7 @@ const showRestaurants = () => {
 
     db.collection("resturant").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            console.log(doc.id, " => ", doc.data());
+            // console.log(doc.id, " => ", doc.data());
 
             allRestaurant += `<div onclick="getResid('${doc.id}')" class="col-lg-3 col-md-4 col-sm-6 pt-4 d-flex justify-content-center">
                                             <div class="card" style="width: 17rem; height: 30 !important;">
