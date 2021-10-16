@@ -21,7 +21,7 @@
     <title>Login | Food</title>
 </head>
 
-<body>
+<body onload="validationLogin()">
     <div id="loader" style="display: none;">
         <div class="loader3">
             <span></span>
@@ -46,11 +46,11 @@
                                             <img width="300px" src="./images/foodpanda-c.png" alt="">
                                         </h1>
                                         <h3 class="fw-bold">Welcome back!</h3>
-                                        <h6 class="mb-5">Log in by typing your email password.</h6>
+                                        <h6 class="mb-5">Log in by typing your email and password.</h6>
 
                                         <div class="row">
                                             <div class="form-outline mb-4">
-                                                <input type="text" id="loginnameoremail"
+                                                <input type="text" id="loginnameoremail" oninput="validationLogin()"
                                                     class="form-control rounded-0 form-control-lg" required />
                                                 <label class="form-label" for="loginnameoremail">Username or Email
                                                     address</label>
@@ -58,7 +58,7 @@
                                         </div>
 
                                         <div class="form-outline mb-1">
-                                            <input type="password" id="loginpassword"
+                                            <input type="password" id="loginpassword" oninput="validationLogin()"
                                                 class="form-control rounded-0 form-control-lg" required />
                                             <label class="form-label" for="loginpassword">Password</label>
                                         </div>
@@ -73,7 +73,7 @@
                                         </div>
 
                                         <div class="pt-3">
-                                            <button type="button" onclick="login()"
+                                            <button type="button" onclick="login()" id="loginBtn"
                                                 class="btn btn-primary shadow-remove rounded-0 text-light button-style">
                                                 Login
                                             </button>

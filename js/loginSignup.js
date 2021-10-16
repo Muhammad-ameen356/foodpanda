@@ -48,7 +48,7 @@ function showloginpassword() {
 }
 
 
-const validation = ()=>{
+const validation = () => {
     let signUserName = document.getElementById('signUserName').value;
     let signUserPhone = document.getElementById('signUserPhone').value;
     let signUserCountry = document.getElementById('signUserCountry').value;
@@ -56,15 +56,15 @@ const validation = ()=>{
     let email = document.getElementById('signUserEmail').value;
     let pass = document.getElementById('signUserPass').value;
     let userSignupButton = document.getElementById('userSignupButton');
-    
-    if((signUserName && signUserPhone && signUserCountry && signUserCity && email && pass).length === 0){
+
+    if ((signUserName && signUserPhone && signUserCountry && signUserCity && email && pass).length === 0) {
         userSignupButton.disabled = true;
-    } else{
+    } else {
         userSignupButton.disabled = false;
     }
 }
 
-const resSignupValidation = ()=>{
+const resSignupValidation = () => {
     let signupResName = document.getElementById('signupResName').value;
     let signupResEmail = document.getElementById('signupResEmail').value;
     let signupRescountry = document.getElementById('signupRescountry').value;
@@ -72,10 +72,22 @@ const resSignupValidation = ()=>{
     let signupResPassword = document.getElementById('signupResPassword').value;
     let file = document.getElementById('MainResImage').files[0];
     let resSignupButton = document.getElementById('resSignupButton');
-    if((signupResName && signupResEmail && signupRescountry && signuResCity && signupResPassword).length === 0 || (file === undefined)){
+    if ((signupResName && signupResEmail && signupRescountry && signuResCity && signupResPassword).length === 0 || (file === undefined)) {
         resSignupButton.disabled = true;
-    } else{
+    } else {
         resSignupButton.disabled = false;
+    }
+}
+
+const validationLogin = () => {
+    let loginnameoremail = document.getElementById('loginnameoremail').value;
+    let loginpassword = document.getElementById('loginpassword').value;
+    let loginBtn = document.getElementById('loginBtn');
+
+    if ((loginnameoremail && loginpassword).length === 0) {
+        loginBtn.disabled = true;
+    } else {
+        loginBtn.disabled = false;
     }
 }
 
@@ -139,19 +151,19 @@ const resturantSignUp = () => {
     let signupResEmail = document.getElementById('signupResEmail').value;
     let signupResPassword = document.getElementById('signupResPassword').value;
 
-        auth.createUserWithEmailAndPassword(signupResEmail, signupResPassword)
-            .then((userCredential) => {
-                var resturant = userCredential.user;
-                console.log(resturant);
-                setresturantInitialData(resturant);
-            })
-            .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log(errorMessage);
-                loader.style.display = "none";
-                swal(errorMessage);
-            });
+    auth.createUserWithEmailAndPassword(signupResEmail, signupResPassword)
+        .then((userCredential) => {
+            var resturant = userCredential.user;
+            console.log(resturant);
+            setresturantInitialData(resturant);
+        })
+        .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorMessage);
+            loader.style.display = "none";
+            swal(errorMessage);
+        });
 }
 
 const setresturantInitialData = (resturant) => {
@@ -267,19 +279,19 @@ const logout = () => {
 
 const uploadImageSignup = (res) => {
     loader.style.display = "block";
-        const ref = storage.ref('resturantProfile');
-        let file = document.getElementById('MainResImage').files[0];
-        const metadata = {
-            contentType: file.type
-        }
-        const task = ref.child(res.uid).put(file, metadata);
-        task.then(snapshot => snapshot.ref.getDownloadURL())
-            .then(url => {
-                uploadImageFirestore(url, res)
-                console.log(url);
-                loader.style.display = "none";
-            })
-            .catch((err) => { console.log(err); })
+    const ref = storage.ref('resturantProfile');
+    let file = document.getElementById('MainResImage').files[0];
+    const metadata = {
+        contentType: file.type
+    }
+    const task = ref.child(res.uid).put(file, metadata);
+    task.then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+            uploadImageFirestore(url, res)
+            console.log(url);
+            loader.style.display = "none";
+        })
+        .catch((err) => { console.log(err); })
 }
 
 const uploadImageFirestore = (url, res) => {
