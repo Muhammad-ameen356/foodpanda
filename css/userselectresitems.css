@@ -48,6 +48,10 @@ body {
   padding: 30px 30px 10px 60px;
 }
 
+.head-resName{
+  font-size: 24px;
+}
+
 .fd-row {
   display: flex;
   flex-direction: row;
@@ -228,4 +232,11 @@ body {
     z-index: 10;
     display: block;
   }
+}
+
+@media screen and (max-width: 550px){
+  .head-resName{
+    font-size: 17px;
+  }
+  
 }

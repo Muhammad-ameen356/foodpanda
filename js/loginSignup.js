@@ -145,7 +145,7 @@ const setUserInitialData = (user) => {
     })
         .then(() => {
             console.log("Document successfully written!");
-            window.location.href = "./login.html";
+            window.location.href = "./index.html";
             loader.style.display = "none"
         })
         .catch((error) => {
@@ -206,7 +206,7 @@ const setresturantInitialData = (resturant) => {
         .then(() => {
             console.log("Document successfully written!");
             uploadImageSignup(resturant);
-            window.location.href = "./login.html";
+            window.location.href = "./index.html";
             loader.style.display = "none"
         })
         .catch((error) => {
@@ -293,7 +293,7 @@ const logout = () => {
         // Sign-out successful.
         console.log("Sign-out successful.");
         loader.style.display = "none";
-        window.location.href = "./login.html"
+        window.location.href = "./index.html"
     }).catch((error) => {
         // An error happened.
         console.log(error);
@@ -309,7 +309,7 @@ const forgetpassword = () => {
     auth.sendPasswordResetEmail(email)
         .then(() => {
             console.log("Password reset email sent!");
-            // window.location.href = "./login.html"
+            // window.location.href = "./index.html"
             loader.style.display = "none";
             swal("Password reset email sent!");
             document.getElementById('forgetInput').value = "";
