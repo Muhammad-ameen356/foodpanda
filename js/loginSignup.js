@@ -336,14 +336,14 @@ const uploadImageSignup = (res) => {
     const task = ref.child(res.uid).put(file, metadata);
     task.then(snapshot => snapshot.ref.getDownloadURL())
         .then(url => {
-            uploadImageFirestore(url, res)
+            uploadImageFirestoreSignup(url, res)
             console.log(url);
             loader.style.display = "none";
         })
         .catch((err) => { console.log(err); })
 }
 
-const uploadImageFirestore = (url, res) => {
+const uploadImageFirestoreSignup = (url, res) => {
     var resRef = db.collection("resturant").doc(res.uid);
     resRef.update({
         imageurl: url
