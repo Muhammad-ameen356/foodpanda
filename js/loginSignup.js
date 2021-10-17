@@ -205,9 +205,8 @@ const setresturantInitialData = (resturant) => {
     })
         .then(() => {
             console.log("Document successfully written!");
-            uploadImageSignup(resturant);
-            window.location.href = "./index.html";
             loader.style.display = "none"
+            uploadImageSignup(resturant);
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
@@ -338,9 +337,10 @@ const uploadImageSignup = (res) => {
         .then(url => {
             uploadImageFirestoreSignup(url, res)
             console.log(url);
+            window.location.href = "./index.html";
             loader.style.display = "none";
         })
-        .catch((err) => { console.log(err); })
+        .catch((err) => { console.log(err); swal(err) })
 }
 
 const uploadImageFirestoreSignup = (url, res) => {
@@ -353,5 +353,6 @@ const uploadImageFirestoreSignup = (url, res) => {
         })
         .catch((error) => {
             console.error("Error updating document: ", error);
+            console.log(error);
         });
 }
