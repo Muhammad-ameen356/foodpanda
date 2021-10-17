@@ -17,18 +17,17 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/signup.css">
     <link rel="stylesheet" href="./css/loader.css">
-    
+
     <link rel="icon" href="./images/pandaicon.png">
-    
+
     <title>User Signup</title>
 </head>
 
 <body onload="validation();">
-    <div id="loader" style="display: none;"> 
+    <div id="loader" style="display: none;">
         <div class="loader3">
             <span></span>
             <span></span>
-
         </div>
     </div>
 
@@ -37,127 +36,111 @@
             <section class="h-100">
                 <div class="container-fluid py-5">
                     <div class="row d-flex justify-content-center align-items-center h-100">
-                        <div class="col">
-                            <div class="card card-registration my-4">
-                                <div class="row g-0">
-                                    <div class="col-xl-6 d-none d-xl-block">
-                                        <img src="./images/userres.jpg" alt="team Managment photo" width="100%"
-                                            height="100%"
-                                            style="border-top-left-radius: 0.25rem; border-bottom-left-radius: 0.25rem;" />
+                        <div class="col-xl-6 bg-transparent-user">
+                            <div class="card-body p-md-5 text-black shadow p-3 mb-5 bg-body rounded">
+                                <h1 class="mb-5 text-capitalize d-flex justify-content-center fw-bold">
+                                    <img width="300px" src="./images/foodpanda-c.png" alt="">
+                                </h1>
+                                <h6>Signup as user</h6>
+                                <h3 class="mb-5 fw-bold">Let's get you started!</h3>
+                                <div class="form-outline mb-4">
+                                    <input type="email" id="signUserName" oninput="validation()"
+                                        class="form-control rounded-0 form-control-lg" autocapitalize="none"
+                                        autocorrect="off" required />
+                                    <label class="form-label" for="signUserName">Username</label>
+                                    <div class="alert alert-danger alert-dismissible fade show" id="alreadyusername"
+                                        style="display: none;" role="alert">
+                                        Username Already Taken, Try another!
                                     </div>
-                                    <div class="col-xl-6 bg-transparent-user">
-                                        <div class="card-body p-md-5 text-black">
-                                            <h1 class="mb-5 text-capitalize d-flex justify-content-center fw-bold">
-                                                <img width="300px" src="./images/foodpanda-c.png" alt="">
-                                            </h1>
-                                            <h6>Signup as user</h6>
-                                            <h3 class="mb-5 fw-bold">Let's get you started!</h3>
-                                            
+                                    <div class="alert alert-danger alert-dismissible fade show" id="spaceusername"
+                                        style="display: none;" role="alert">
+                                        Username Can not contain any space!
+                                    </div>
+                                </div>
 
-                                            <!-- <div class="row"> -->
-                                            <div class="form-outline mb-4">
-                                                <input type="email" id="signUserName" oninput="validation()"
-                                                    class="form-control rounded-0 form-control-lg" autocapitalize="none"
-                                                    autocorrect="off" required />
-                                                <label class="form-label" for="signUserName">Username</label>
-                                                <div class="alert alert-danger alert-dismissible fade show"
-                                                    id="alreadyusername" style="display: none;" role="alert">
-                                                    Username Already Taken, Try another!
-                                                </div>
-                                                <div class="alert alert-danger alert-dismissible fade show"
-                                                    id="spaceusername" style="display: none;" role="alert">
-                                                    Username Can not contain any space!
-                                                </div>
-                                            </div>
-
-                                            <div class="form-outline mb-4">
-                                                <input type="email" id="signUserEmail" oninput="validation()"
-                                                    class="form-control rounded-0 form-control-lg" required />
-                                                <label class="form-label" for="signUserEmail">Email ID</label>
-                                            </div>
-                                            <div class="form-outline mb-4">
-                                                <input type="number" id="signUserPhone" oninput="validation()"
-                                                    class="form-control rounded-0 form-control-lg" required />
-                                                <label class="form-label" for="signUserPhone">Phone Number</label>
-                                            </div>
-                                            <div class="form-outline mb-4">
-                                                <!-- <input type="text" id="signUserCountry"
+                                <div class="form-outline mb-4">
+                                    <input type="email" id="signUserEmail" oninput="validation()"
+                                        class="form-control rounded-0 form-control-lg" required />
+                                    <label class="form-label" for="signUserEmail">Email ID</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input type="number" id="signUserPhone" oninput="validation()"
+                                        class="form-control rounded-0 form-control-lg" required />
+                                    <label class="form-label" for="signUserPhone">Phone Number</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <!-- <input type="text" id="signUserCountry"
                                                     class="form-control rounded-0 form-control-lg" required />
                                                 <label class="form-label" for="signUserCountry">Country</label> -->
-                                                <select id="signUserCountry" oninput="validation()"
-                                                    class="form-select shadow-remove form-select-lg borderradius-remove"
-                                                    aria-label="Default select example" style="font-size: 16px;"
-                                                    required>
-                                                    <option value="" selected>Not Selected</option>
-                                                    <option value="Pakistan">Pakistan</option>
-                                                </select>
-                                                <label for="signUserCountry" class="form-label">Country</label>
-                                            </div>
-                                            <div class="form-outline mb-4">
-                                                <!-- <input type="text" id="signUserCity"
+                                    <select id="signUserCountry" oninput="validation()"
+                                        class="form-select shadow-remove form-select-lg borderradius-remove"
+                                        aria-label="Default select example" style="font-size: 16px;" required>
+                                        <option value="" selected>Not Selected</option>
+                                        <option value="Pakistan">Pakistan</option>
+                                    </select>
+                                    <label for="signUserCountry" class="form-label">Country</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <!-- <input type="text" id="signUserCity"
                                                     class="form-control rounded-0 form-control-lg" required />
                                                 <label class="form-label" for="signUserCity">City</label> -->
 
-                                                <select id="signUserCity" oninput="validation()"
-                                                    class="form-select shadow-remove form-select-lg borderradius-remove"
-                                                    aria-label="Default select example" style="font-size: 16px;"
-                                                    required>
-                                                    <option value="" selected>Not Selected</option>
-                                                    <option value="Karachi">Karachi</option>
-                                                    <option value="Lahore">Lahore</option>
-                                                    <option value="Faisalabad">Faisalabad</option>
-                                                    <option value="Rawalpindi">Rawalpindi</option>
-                                                    <option value="Gujranwala">Gujranwala</option>
-                                                    <option value="Peshawar">Peshawar</option>
-                                                    <option value="Multan">Multan</option>
-                                                    <option value="Hyderabad City">Hyderabad City</option>
-                                                    <option value="Islamabad">Islamabad</option>
-                                                    <option value="Quetta">Quetta</option>
-                                                    <option value="Bahawalpur">Bahawalpur</option>
-                                                    <option value="Sargodha">Sargodha</option>
-                                                    <option value="Rahimyar Khan">Rahimyar Khan</option>
-                                                    <option value="Mardan">Mardan</option>
-                                                    <option value="Abbottabad">Abbottabad</option>
-                                                    <option value="Chaman">Chaman</option>
-                                                    <option value="Muzaffarabad">Muzaffarabad</option>
-                                                    <option value="Mianwali">Mianwali</option>
-                                                    <option value="Jhelum">Jhelum</option>
-                                                    <option value="Mardan">Mardan</option>
-                                                    <option value="Mardan">Mardan</option>
-                                                    <option value="Mardan">Mardan</option>
-                                                </select>
-                                                <label for="signUserCity" class="form-label">City</label>
-                                            </div>
+                                    <select id="signUserCity" oninput="validation()"
+                                        class="form-select shadow-remove form-select-lg borderradius-remove"
+                                        aria-label="Default select example" style="font-size: 16px;" required>
+                                        <option value="" selected>Not Selected</option>
+                                        <option value="Karachi">Karachi</option>
+                                        <option value="Lahore">Lahore</option>
+                                        <option value="Faisalabad">Faisalabad</option>
+                                        <option value="Rawalpindi">Rawalpindi</option>
+                                        <option value="Gujranwala">Gujranwala</option>
+                                        <option value="Peshawar">Peshawar</option>
+                                        <option value="Multan">Multan</option>
+                                        <option value="Hyderabad City">Hyderabad City</option>
+                                        <option value="Islamabad">Islamabad</option>
+                                        <option value="Quetta">Quetta</option>
+                                        <option value="Bahawalpur">Bahawalpur</option>
+                                        <option value="Sargodha">Sargodha</option>
+                                        <option value="Rahimyar Khan">Rahimyar Khan</option>
+                                        <option value="Mardan">Mardan</option>
+                                        <option value="Abbottabad">Abbottabad</option>
+                                        <option value="Chaman">Chaman</option>
+                                        <option value="Muzaffarabad">Muzaffarabad</option>
+                                        <option value="Mianwali">Mianwali</option>
+                                        <option value="Jhelum">Jhelum</option>
+                                        <option value="Mardan">Mardan</option>
+                                        <option value="Mardan">Mardan</option>
+                                        <option value="Mardan">Mardan</option>
+                                    </select>
+                                    <label for="signUserCity" class="form-label">City</label>
+                                </div>
 
-                                            <div class="form-outline mb-1">
-                                                <input type="password" id="signUserPass" oninput="validation()"
-                                                    class="form-control rounded-0 form-control-lg" required />
-                                                <label class="form-label" for="signUserPass">Password</label>
-                                            </div>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input shadow-remove link-style" type="checkbox"
-                                                    onclick="showusersignuppassword()" id="flexSwitchCheckDefault" />
-                                                <label class="form-check-label" for="flexSwitchCheckDefault">
-                                                    Show Password</label>
-                                            </div>
-                                            <div class="d-flex justify-content-between">
-                                                <div id="" class="form-text mb-4 text-center pt-4">
-                                                    SignUp as <a class="link-style" href="signupresturant.html"> Resturant</a>
-                                                </div>
-                                                <div id="" class="form-text mb-4 text-center pt-4">
-                                                    Already have an account <a class="link-style" href="login.html">Login here</a>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="pt-3 ">
-                                                <button type="button" onclick="userSignUp()" id="userSignupButton"
-                                                    class="btn btn-primary shadow-remove rounded-0 text-light button-style">
-                                                    Create Account
-                                                </button>
-                                            </div>
-                                        </div>
+                                <div class="form-outline mb-1">
+                                    <input type="password" id="signUserPass" oninput="validation()"
+                                        class="form-control rounded-0 form-control-lg" required />
+                                    <label class="form-label" for="signUserPass">Password</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input shadow-remove link-style" type="checkbox"
+                                        onclick="showusersignuppassword()" id="flexSwitchCheckDefault" />
+                                    <label class="form-check-label" for="flexSwitchCheckDefault">
+                                        Show Password</label>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <div id="" class="form-text mb-4 text-center pt-4">
+                                        SignUp as <a class="link-style" href="signupresturant.html"> Resturant</a>
                                     </div>
+                                    <div id="" class="form-text mb-4 text-center pt-4">
+                                        Already have an account <a class="link-style" href="login.html">Login here</a>
+                                    </div>
+                                </div>
+
+
+                                <div class="pt-3 ">
+                                    <button type="button" onclick="userSignUp()" id="userSignupButton"
+                                        class="btn btn-primary shadow-remove rounded-0 text-light button-style">
+                                        Create Account
+                                    </button>
                                 </div>
                             </div>
                         </div>
