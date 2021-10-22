@@ -108,11 +108,15 @@ const userSignUp = () => {
     loader.style.display = "block"
     let email = document.getElementById('signUserEmail').value;
     let pass = document.getElementById('signUserPass').value;
+    let signUserName = document.getElementById('signUserName').value;
 
     auth.createUserWithEmailAndPassword(email, pass)
         .then((userCredential) => {
             var user = userCredential.user;
             console.log(user);
+            user.updateProfile({
+                displayName: signUserName,
+            })
             setUserInitialData(user);
             sendEmailVerification();
         })
