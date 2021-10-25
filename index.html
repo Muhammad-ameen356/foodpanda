@@ -44,8 +44,11 @@
                                 <div class="form-outline mb-4">
                                     <input type="text" id="loginnameoremail" oninput="validationLogin()"
                                         class="form-control rounded-0 form-control-lg" required />
-                                    <label class="form-label" for="loginnameoremail">Username or Email
-                                        address</label>
+                                    <div class="d-flex justify-content-between">
+                                        <label class="form-label" for="loginnameoremail">Username or Email
+                                            address</label>
+                                        <a class="link-style" href="#" style="display: none;" id="sendverfemailagain" onclick="sendEmailVerification()">Send Verification email</a>
+                                    </div>
                                 </div>
                             </div>
 

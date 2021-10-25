@@ -199,7 +199,7 @@ const setresturantInitialData = (resturant) => {
         type: "resturant",
         restaurantkey: resturant.uid,
         imageurl: "",
-        deal: "",
+        deal: "No deal",
         operorclose: "",
         wrkinghours: "",
         address: "",
@@ -249,7 +249,7 @@ const login = () => {
 
 const authStateListener = () => {
     let loader = document.getElementById('loader');
-
+    let sendverfemailagain = document.getElementById('sendverfemailagain');
     auth.onAuthStateChanged((user) => {
         if (user.emailVerified === true) {
             if (user) {
@@ -261,7 +261,8 @@ const authStateListener = () => {
             }
         } else {
             loader.style.display = "none"
-            swal("Please verify your email address, Go on your given email and click on the given link")
+            swal("Please verify your email address, Go on your given email and click on the given link. If you did not receive any Email Click on SEND EMAIL VERIFICATION to receive an email");
+            sendverfemailagain.style.display = "block";
         }
     });
 }
